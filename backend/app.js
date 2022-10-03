@@ -2,10 +2,13 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+
 require("dotenv").config();
+const { MONGOURI } = process.env;
 
 //Routes
-
+const usersRoutes = require("./routes/users");
+const authRoutes = require("./routes/auth");
 const cors = require("cors");
 
 //Init Middleware
@@ -13,7 +16,6 @@ app.use(morgan("dev"));
 app.use(express.json({ extended: false }));
 
 //Connect to the database
-const { MONGOURI } = process.env;
 try {
   mongoose.connect(MONGOURI, { useNewUrlParser: true });
   console.log("MongoDB Connected...");
@@ -26,6 +28,8 @@ try {
 app.use(cors());
 
 //Routes which should handle requests
+app.use("/api/users", usersRoutes);
+app.use("/api/auth", authRoutes);
 app.get("/", (req, res) => res.send("Welcome to My Gaming Library"));
 
 // Error 404

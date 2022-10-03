@@ -1,0 +1,14 @@
+{
+  "name": "my-gaming-library",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd server && npm run server\" \"cd client && npm start\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^7.4.0"
+  }
+}

@@ -32,6 +32,16 @@ router.post(
   profileController.addGame
 );
 
+// @route   GET /profile/game/:game_id
+// @desc    Add game to profile
+// @access  Private
+router.get("/game/:game_id", auth, profileController.getGame);
+
+// @route   PUT /profile/game/:game_id
+// @desc    Update game from profile
+// @access  Private
+router.put("/game/:game_id", auth, profileController.updateGame);
+
 // @route   DELETE /profile/game/:game_id
 // @desc    Delete game from profile
 // @access  Private

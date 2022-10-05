@@ -6,6 +6,7 @@ require("dotenv").config();
 const { JWTSECRET } = process.env;
 
 const User = require("../models/User");
+const Profile = require("../models/Profile");
 
 exports.registerUser = async (req, res, next) => {
   const errors = validationResult(req);
@@ -29,12 +30,18 @@ exports.registerUser = async (req, res, next) => {
       password,
     });
 
+    // Create user profile
+    profile = new Profile({
+      user: user.id,
+    });
+
     // Encrypt password
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
 
     // Save user to the database
     await user.save();
+    await profile.save();
 
     // Return jsonwebtoken (login user)
     const payload = {

@@ -5,11 +5,16 @@ const auth = require("../middleware/auth");
 
 const { check } = require("express-validator");
 
-const usersController = require("../controllers/usersController");
+const profileController = require("../controllers/profileController");
 
 // @route   GET /profile/me
 // @desc    Get current user profile
 // @access  Private
-router.post("/", auth, profileController.getProfile);
+router.get("/me", auth, profileController.getProfile);
+
+// @route   POST /profile/update
+// @desc    Update a user profile
+// @access  Private
+router.post("/update", auth, profileController.updateProfile);
 
 module.exports = router;

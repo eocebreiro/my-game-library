@@ -7,8 +7,9 @@ require("dotenv").config();
 const { MONGOURI } = process.env;
 
 //Routes
-const usersRoutes = require("./routes/users");
+const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
+const profileRoutes = require("./routes/profile");
 const cors = require("cors");
 
 //Init Middleware
@@ -28,8 +29,9 @@ try {
 app.use(cors());
 
 //Routes which should handle requests
-app.use("/api/users", usersRoutes);
+app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/profile", profileRoutes);
 app.get("/", (req, res) => res.send("Welcome to My Gaming Library"));
 
 // Error 404

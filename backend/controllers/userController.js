@@ -20,7 +20,7 @@ exports.registerUser = async (req, res, next) => {
     // See if user exists
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ errors: [{ msg: "User already exits" }] });
+      return res.status(400).json({ errors: [{ msg: "User already exists" }] });
     }
 
     // Create a new user
@@ -53,6 +53,18 @@ exports.registerUser = async (req, res, next) => {
       if (err) throw err;
       res.json({ token });
     });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+};
+
+exports.deleteUser = async (req, res, next) => {
+  try {
+    await Profile.findOneAndDelete({ user: req.user.id });
+    await User.findOneAndDelete({ _id: req.user.id });
+
+    res.json({ msg: "User deleted" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

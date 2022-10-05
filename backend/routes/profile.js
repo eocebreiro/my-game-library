@@ -7,15 +7,19 @@ const { check } = require("express-validator");
 
 const profileController = require("../controllers/profileController");
 
-// @route   GET /profile/me
+// @route   GET /profile/
 // @desc    Get current user profile
 // @access  Private
-router.get("/me", auth, profileController.getProfile);
+router.get("/", auth, profileController.getProfile);
 
-// @route   POST /profile/update
-// @desc    Update a user profile
+// @route   PUT /profile
+// @desc    Update a user
 // @access  Private
-router.post("/update", auth, profileController.updateProfile);
+router.put(
+  "/",
+  [auth, [check("name", "Name is required").not().isEmpty()]],
+  profileController.updateProfile
+);
 
 // @route   POST /profile/game
 // @desc    Add game to profile

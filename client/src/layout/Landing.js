@@ -8,7 +8,6 @@ import { AuthContext } from "../contexts/AuthContext";
 export const Landing = () => {
   const { component } = useContext(AuthContext);
 
-  console.log(component);
   return (
     <div className="landing">
       {component === "login" ? <Login /> : <Register />}

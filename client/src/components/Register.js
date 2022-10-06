@@ -3,10 +3,10 @@ import React, { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 export const Register = () => {
-  const state = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
 
   const changeComponent = () => {
-    state.setComponent("register");
+    dispatch({ type: "SET_COMPONENT", component: "login" });
   };
   return (
     <div className="Auth-form-container">

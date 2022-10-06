@@ -1,16 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { AuthContext } from "../contexts/AuthContext";
 
 export const Login = () => {
-  const state = useContext(AuthContext);
-
-  useEffect(() => {});
+  const { dispatch } = useContext(AuthContext);
 
   const changeComponent = () => {
-    console.log(state.component);
-    state.setComponent("register");
-    console.log(state.component);
+    dispatch({ type: "SET_COMPONENT", component: "register" });
   };
 
   return (

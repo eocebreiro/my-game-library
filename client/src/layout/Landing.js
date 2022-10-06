@@ -1,19 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React, { Component, useContext, useEffect } from "react";
+
 import { Login } from "../components/Login";
 import { Register } from "../components/Register";
-import { AuthContext, AuthContextProvider } from "../contexts/AuthContext";
+
+import { AuthContext } from "../contexts/AuthContext";
 
 export const Landing = () => {
-  const state = useContext(AuthContext);
-  useEffect(() => {}, [state.component]);
-  console.log("landing");
-  console.log(state.component);
+  const { component } = useContext(AuthContext);
 
+  console.log(component);
   return (
     <div className="landing">
-      <AuthContextProvider>
-        {state.component === "login" ? <Login /> : <Register />}
-      </AuthContextProvider>
+      {component === "login" ? <Login /> : <Register />}
     </div>
   );
 };

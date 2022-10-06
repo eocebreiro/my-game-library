@@ -1,3 +1,5 @@
+import { AuthContextProvider } from "./contexts/AuthContext";
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -7,7 +9,9 @@ import { Dashboard } from "./layout/Dashboard";
 function App() {
   return (
     <div className="App bg-dark">
-      <Landing />
+      <AuthContextProvider>
+        <Landing />
+      </AuthContextProvider>
     </div>
   );
 }

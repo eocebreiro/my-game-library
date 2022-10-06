@@ -16,7 +16,10 @@ export const Login = () => {
           <h3 className="Auth-form-title">Sign In</h3>
           <div className="text-center">
             Not registered yet?{" "}
-            <span className="link-primary" onClick={changeComponent}>
+            <span
+              className="link-primary cursor-pointer"
+              onClick={changeComponent}
+            >
               Sign Up
             </span>
           </div>

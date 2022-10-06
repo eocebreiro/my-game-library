@@ -10,6 +10,7 @@ export const Landing = () => {
 
   return (
     <div className="landing">
+      <h1 className="text-center display-1 text-light">My Gaming Library</h1>
       {component === "login" ? <Login /> : <Register />}
     </div>
   );

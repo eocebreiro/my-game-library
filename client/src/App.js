@@ -1,7 +1,7 @@
 import { AuthContextProvider } from "./contexts/AuthContext";
 
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 import { Landing } from "./layout/Landing";
 import { Dashboard } from "./layout/Dashboard";

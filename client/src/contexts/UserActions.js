@@ -1,12 +1,14 @@
 import axios from "axios";
 
+const { REACT_APP_BASE_URL } = process.env;
+
 // Toggle between the register component and login component in the landing page
 export const toggleComponent = (dispatch, component) => {
   dispatch({ type: "SET_COMPONENT", payload: { component } });
 };
 
 // Axios call to register a user
-export const register = async ({ name, email, password }) => {
+export const registerUser = async (dispatch, name, email, password) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -16,10 +18,13 @@ export const register = async ({ name, email, password }) => {
   const body = JSON.stringify({ name, email, password });
 
   try {
-    const res = await axios.post("", body, config);
-
-    return { type: "REGISTER_SUCCESS", payload: res.data };
+    const res = await axios.post(
+      REACT_APP_BASE_URL + "/api/user",
+      body,
+      config
+    );
+    dispatch({ type: "REGISTER_SUCCESS", payload: res.data });
   } catch (err) {
-    return { type: "REGISTER_FAIL" };
+    dispatch({ type: "REGISTER_FAIL" });
   }
 };

@@ -7,7 +7,12 @@ export const UserReducer = (state, action) => {
 
     case "REGISTER_SUCCESS":
       localStorage.setItem("token", payload.token);
-      return { ...state, isAuthenticated: true, loading: false };
+      return {
+        ...state,
+        token: localStorage.getItem("token"),
+        isAuthenticated: true,
+        loading: false,
+      };
 
     case "REGISTER_FAIL":
       localStorage.removeItem("token");

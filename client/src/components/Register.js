@@ -1,12 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { useAuthDispatch } from "../contexts/AuthContext";
+// State
+import { useUser } from "../contexts/UserContext";
+
+// Actions
+import { toggleComponent } from "../contexts/UserActions";
 
 export const Register = () => {
-  const dispatch = useAuthDispatch();
+  const { dispatch } = useUser();
 
   const changeComponent = () => {
-    dispatch({ type: "SET_COMPONENT", payload: { component: "login" } });
+    toggleComponent(dispatch, "login");
   };
   return (
     <div className="Auth-form-container">

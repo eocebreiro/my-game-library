@@ -1,12 +1,16 @@
-import React, { useContext } from "react";
-import { register, toggleComponent } from "../actions/authActions";
-import { useAuthDispatch } from "../contexts/AuthContext";
+import React from "react";
+
+// State
+import { useUser } from "../contexts/UserContext";
+
+// Actions
+import { toggleComponent } from "../contexts/UserActions";
 
 export const Login = () => {
-  const dispatch = useAuthDispatch();
+  const { dispatch } = useUser();
 
   const changeComponent = () => {
-    dispatch(toggleComponent("register"));
+    toggleComponent(dispatch, "register");
   };
 
   return (

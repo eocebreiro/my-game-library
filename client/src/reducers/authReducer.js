@@ -1,9 +1,14 @@
 export const authReducer = (state, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case "SET_COMPONENT":
-      return action.component;
-    case "GET_COMPONENT":
-      return state;
+      return { ...state, component: payload.component };
+    case "REGISTER_SUCCESS":
+      localStorage.setItem("token", payload.token);
+      return { ...state, isAuthenticated: true, loading: false };
+    case "REGISTER_FAIL":
+      localStorage.removeItem("token");
+      return { ...state, token: null, isAuthenticated: true, loading: false };
     default:
       return state;
   }

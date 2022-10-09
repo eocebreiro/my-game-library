@@ -13,7 +13,7 @@ export const UserReducer = (state, action) => {
         user: payload,
       };
 
-    case "REGISTER_SUCCESS":
+    case "SUCCESS":
       localStorage.setItem("token", payload.token);
       return {
         ...state,
@@ -22,8 +22,7 @@ export const UserReducer = (state, action) => {
         loading: false,
       };
 
-    case "AUTH_ERROR":
-    case "REGISTER_FAIL":
+    case "ERROR":
       localStorage.removeItem("token");
       return { ...state, token: null, isAuthenticated: false, loading: false };
     default:

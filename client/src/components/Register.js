@@ -27,8 +27,6 @@ export const Register = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(name);
-    console.log(email);
     if (name === "") {
       console.log("Name is required");
     } else if (email === "") {
@@ -36,7 +34,7 @@ export const Register = () => {
     } else if (password !== password2) {
       console.log("Passwords do not match");
     } else {
-      registerUser(dispatch, name, email, password);
+      await registerUser(dispatch, name, email, password);
     }
   };
 

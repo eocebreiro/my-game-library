@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Navigate } from "react-router-dom";
 
 // State
 import { useUser } from "../contexts/UserContext";
+
+// Actions
+import { loadUser } from "../contexts/UserActions";
 
 // Components
 import { Login } from "../components/Login";
 import { Register } from "../components/Register";
 
 export const Landing = () => {
-  const { state } = useUser();
+  const { state, dispatch } = useUser();
+
+  if (state.isAuthenticated) {
+    loadUser(dispatch);
+    return <Navigate to="/dashboard" />;
+  }
 
   return (
     <div className="landing">

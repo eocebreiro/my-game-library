@@ -3,6 +3,20 @@ import { setAuthToken } from "../utils/setAuthToken";
 
 const { REACT_APP_BASE_URL } = process.env;
 
+// Load User
+export const loadUser = async (dispatch) => {
+  if (localStorage.token) {
+    await setAuthToken(localStorage.token);
+  }
+  try {
+    console.log(localStorage.token);
+    const res = await axios.get(REACT_APP_BASE_URL + "/api/auth");
+    dispatch({ type: "USER_LOADED", payload: res.data });
+  } catch (err) {
+    dispatch({ type: "ERROR" });
+  }
+};
+
 // Toggle between the register component and login component in the landing page
 export const toggleComponent = (dispatch, component) => {
   dispatch({ type: "SET_COMPONENT", payload: { component } });
@@ -24,24 +38,30 @@ export const registerUser = async (dispatch, name, email, password) => {
       body,
       config
     );
-    dispatch({ type: "REGISTER_SUCCESS", payload: res.data });
+    dispatch({ type: "SUCCESS", payload: res.data });
   } catch (err) {
-    dispatch({ type: "REGISTER_FAIL" });
+    dispatch({ type: "ERROR" });
   }
 };
 
-// Load User
-export const loadUser = async (dispatch) => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
+// Axios call to login a user
+export const loginUser = async (dispatch, email, password) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.get(REACT_APP_BASE_URL + "/api/auth");
-
-    dispatch({ type: "USER_LOADED", payload: res.data });
-    console.log(res.data);
+    const res = await axios.post(
+      REACT_APP_BASE_URL + "/api/auth",
+      body,
+      config
+    );
+    dispatch({ type: "SUCCESS", payload: res.data });
   } catch (err) {
-    dispatch({ type: "AUTH_ERROR" });
+    dispatch({ type: "ERROR" });
   }
 };

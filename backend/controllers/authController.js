@@ -5,6 +5,16 @@ const { JWTSECRET } = process.env;
 
 const User = require("../models/User");
 
+exports.test = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+};
+
 exports.authenticate = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

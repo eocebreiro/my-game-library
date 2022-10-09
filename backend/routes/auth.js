@@ -5,6 +5,11 @@ const { check } = require("express-validator");
 
 const authController = require("../controllers/authController");
 
+// @route   GET api/auth
+// @desc    Test Route
+// @access  Public
+router.get("/", auth, authController.test);
+
 // @route   POST api/auth
 // @desc    Authenticate user & get token
 // @access  Public

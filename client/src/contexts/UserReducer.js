@@ -5,6 +5,14 @@ export const UserReducer = (state, action) => {
     case "SET_COMPONENT":
       return { ...state, component: payload.component };
 
+    case "USER_LOADED":
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload,
+      };
+
     case "REGISTER_SUCCESS":
       localStorage.setItem("token", payload.token);
       return {
@@ -14,6 +22,7 @@ export const UserReducer = (state, action) => {
         loading: false,
       };
 
+    case "AUTH_ERROR":
     case "REGISTER_FAIL":
       localStorage.removeItem("token");
       return { ...state, token: null, isAuthenticated: false, loading: false };

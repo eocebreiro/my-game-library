@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setAuthToken } from "../utils/setAuthToken";
 
 const { REACT_APP_BASE_URL } = process.env;
 
@@ -26,5 +27,21 @@ export const registerUser = async (dispatch, name, email, password) => {
     dispatch({ type: "REGISTER_SUCCESS", payload: res.data });
   } catch (err) {
     dispatch({ type: "REGISTER_FAIL" });
+  }
+};
+
+// Load User
+export const loadUser = async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    const res = await axios.get(REACT_APP_BASE_URL + "/api/auth");
+
+    dispatch({ type: "USER_LOADED", payload: res.data });
+    console.log(res.data);
+  } catch (err) {
+    dispatch({ type: "AUTH_ERROR" });
   }
 };

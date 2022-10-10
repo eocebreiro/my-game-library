@@ -65,3 +65,8 @@ export const loginUser = async (dispatch, email, password) => {
     dispatch({ type: "ERROR" });
   }
 };
+
+// Logout the user
+export const logoutUser = async (dispatch) => {
+  dispatch({ type: "LOGOUT" });
+};

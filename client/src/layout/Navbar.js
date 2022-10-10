@@ -1,5 +1,58 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+// State
+import { useUser } from "../contexts/UserContext";
+
+// Actions
+import { logoutUser } from "../contexts/UserActions";
+
+// Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export const Navbar = () => {
-  return <div>Navbar</div>;
+  const { state, dispatch } = useUser();
+
+  const onClick = async (e) => {
+    e.preventDefault();
+    await logoutUser(dispatch);
+  };
+
+  let navbar = null;
+  if (state.isAuthenticated) {
+    navbar = (
+      <nav className="ps-5 pe-5 navbar  navbar-dark bg-dark fixed-top">
+        <Link
+          to="/dashboard"
+          className="navbar-brand  mr-0 text-center link-color link-color-hover"
+        >
+          MGL
+        </Link>
+        <ul className="nav gap-5 ">
+          <li className="nav-item">
+            <Link
+              to="/"
+              className="text-decoration-none link-color link-color-hover"
+            >
+              <FontAwesomeIcon icon={faPlus} fixedWidth />
+              <span className="d-none d-md-inline"> Add a Game</span>
+            </Link>
+          </li>
+          <li className="nav-item ">
+            <Link
+              to="/"
+              className="text-decoration-none link-color link-color-hover "
+              onClick={(e) => onClick(e)}
+            >
+              <FontAwesomeIcon icon={faRightFromBracket} fixedWidth />
+              <span className="d-none d-md-inline"> Logout</span>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    );
+  }
+
+  return navbar;
 };

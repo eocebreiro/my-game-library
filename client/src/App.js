@@ -15,6 +15,7 @@ import { loadUser } from "./contexts/UserActions";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { Landing } from "./layout/Landing";
 import { Dashboard } from "./layout/Dashboard";
+import { Navbar } from "./layout/Navbar";
 
 function App() {
   const { dispatch } = useUser();
@@ -30,6 +31,7 @@ function App() {
   return (
     <div className="App bg-dark">
       <Router>
+        <Navbar />
         <Routes>
           <Route
             exact

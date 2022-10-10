@@ -1,6 +1,14 @@
 .App {
 }
 
+.link-color {
+  color: white;
+}
+
+.link-color-hover:hover {
+  color: grey;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

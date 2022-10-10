@@ -9,7 +9,11 @@ import { logoutUser } from "../contexts/UserActions";
 
 // Font Awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightFromBracket, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHouse,
+  faRightFromBracket,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const Navbar = () => {
   const { state, dispatch } = useUser();
@@ -32,7 +36,16 @@ export const Navbar = () => {
         <ul className="nav gap-5 ">
           <li className="nav-item">
             <Link
-              to="/"
+              to="/dashboard"
+              className="text-decoration-none link-color link-color-hover"
+            >
+              <FontAwesomeIcon icon={faHouse} fixedWidth />
+              <span className="d-none d-md-inline"> Home</span>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/addgame"
               className="text-decoration-none link-color link-color-hover"
             >
               <FontAwesomeIcon icon={faPlus} fixedWidth />

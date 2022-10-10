@@ -185,7 +185,7 @@ export const AddGame = () => {
                 <div className="col-md-6 mb-4">
                   Status:{" "}
                   <select className="form-control">{statusOptions}</select>
-                  <div class="invalid-feedback">Status is required.</div>
+                  <div className="invalid-feedback">Status is required.</div>
                 </div>
               </div>
               <div className="row">

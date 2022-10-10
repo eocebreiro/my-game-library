@@ -9,7 +9,6 @@ export const loadUser = async (dispatch) => {
     await setAuthToken(localStorage.token);
   }
   try {
-    console.log(localStorage.token);
     const res = await axios.get(REACT_APP_BASE_URL + "/api/auth");
     dispatch({ type: "USER_LOADED", payload: res.data });
   } catch (err) {

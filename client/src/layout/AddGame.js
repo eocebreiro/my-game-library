@@ -67,8 +67,6 @@ export const AddGame = () => {
 
   // Check validation while user is inputing
   const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
     // Disable or Undisable form items depending on selection of status
     if (e.target.name === "status") {
       if (
@@ -132,10 +130,12 @@ export const AddGame = () => {
         });
         setFormData({
           ...formData,
+          [e.target.name]: e.target.value,
           ownership: "",
           hours: "",
           rating: "",
         });
+        return;
       } else if (e.target.value === "Backlog") {
         setFormFeedback({
           ...formFeedback,
@@ -144,9 +144,11 @@ export const AddGame = () => {
         });
         setFormData({
           ...formData,
+          [e.target.name]: e.target.value,
           hours: "",
           rating: "",
         });
+        return;
       } else if (e.target.value === "Wishlist") {
         setFormFeedback({
           ...formFeedback,
@@ -156,14 +158,17 @@ export const AddGame = () => {
         });
         setFormData({
           ...formData,
+          [e.target.name]: e.target.value,
           ownership: "",
           hours: "",
           rating: "",
         });
+        return;
       } else {
         setFormFeedback({ ...formFeedback, statusFB: "is-valid" });
       }
     }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
     // Check ownership
     if (e.target.name === "ownership") {

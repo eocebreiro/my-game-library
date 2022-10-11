@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export const AddGame = () => {
+  // State for the raw form data input from the user
   const [formData, setFormData] = useState({
     name: "",
     compilation: "",
@@ -23,6 +24,7 @@ export const AddGame = () => {
     comments,
   } = formData;
 
+  // State for error feedback
   const [formFeedback, setFormFeedback] = useState({
     nameFB: "",
     systemFB: "",
@@ -35,27 +37,70 @@ export const AddGame = () => {
   const { nameFB, systemFB, statusFB, ownershipFB, hoursFB, ratingFB } =
     formFeedback;
 
+  // State for undisabling items in form depending on what is chosen for status
+  const [formDisable, setFormDisable] = useState({
+    ownershipDisable: true,
+    hoursDisable: true,
+    ratingDisable: true,
+  });
+
+  const { ownershipDisable, hoursDisable, ratingDisable } = formDisable;
+
   const statusOptions = [
-    <option value="1">Select an option</option>,
-    <option value="2">Unfinished</option>,
-    <option value="3">Beaten</option>,
-    <option value="4">Completed</option>,
-    <option value="5">Backlog</option>,
-    <option value="6">Wishlist</option>,
+    <option key="1">Select an option</option>,
+    <option key="2">Unfinished</option>,
+    <option key="3">Beaten</option>,
+    <option key="4">Completed</option>,
+    <option key="5">Backlog</option>,
+    <option key="6">Wishlist</option>,
   ];
 
   const ownershipOptions = [
-    <option value="1">Select an option</option>,
-    <option value="2">Owned</option>,
-    <option value="3">Household</option>,
-    <option value="4">Subscription</option>,
-    <option value="5">Borrowed/Rented</option>,
-    <option value="6">Formerly Owned</option>,
-    <option value="7">Other</option>,
+    <option key="1">Select an option</option>,
+    <option key="2">Owned</option>,
+    <option key="3">Household</option>,
+    <option key="4">Subscription</option>,
+    <option key="5">Borrowed/Rented</option>,
+    <option key="6">Formerly Owned</option>,
+    <option key="7">Other</option>,
   ];
 
+  // Check validation while user is inputing
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    // Disable or Undisable form items depending on selection of status
+    if (e.target.name === "status") {
+      if (
+        e.target.value === "Unfinished" ||
+        e.target.value === "Beaten" ||
+        e.target.value === "Completed"
+      ) {
+        setFormDisable({
+          ...formDisable,
+          ownershipDisable: false,
+          hoursDisable: false,
+          ratingDisable: false,
+        });
+      } else if (e.target.value === "Backlog") {
+        setFormDisable({
+          ...formDisable,
+          ownershipDisable: false,
+          hoursDisable: true,
+          ratingDisable: true,
+        });
+      } else if (
+        e.target.value === "Wishlist" ||
+        e.target.value === "Select an option"
+      ) {
+        setFormDisable({
+          ...formDisable,
+          ownershipDisable: true,
+          hoursDisable: true,
+          ratingDisable: true,
+        });
+      }
+    }
 
     // Check name
     if (e.target.name === "name") {
@@ -75,9 +120,67 @@ export const AddGame = () => {
       }
     }
 
+    // Check status and clear feedback on disable items
+    if (e.target.name === "status") {
+      if (e.target.value === "Select an option") {
+        setFormFeedback({
+          ...formFeedback,
+          statusFB: "is-invalid",
+          ownershipFB: "",
+          hoursFB: "",
+          ratingFB: "",
+        });
+        setFormData({
+          ...formData,
+          ownership: "",
+          hours: "",
+          rating: "",
+        });
+      } else if (e.target.value === "Backlog") {
+        setFormFeedback({
+          ...formFeedback,
+          hoursFB: "",
+          ratingFB: "",
+        });
+        setFormData({
+          ...formData,
+          hours: "",
+          rating: "",
+        });
+      } else if (e.target.value === "Wishlist") {
+        setFormFeedback({
+          ...formFeedback,
+          ownershipFB: "",
+          hoursFB: "",
+          ratingFB: "",
+        });
+        setFormData({
+          ...formData,
+          ownership: "",
+          hours: "",
+          rating: "",
+        });
+      } else {
+        setFormFeedback({ ...formFeedback, statusFB: "is-valid" });
+      }
+    }
+
+    // Check ownership
+    if (e.target.name === "ownership") {
+      if (e.target.value === "Select an option") {
+        setFormFeedback({ ...formFeedback, ownershipFB: "is-invalid" });
+      } else {
+        setFormFeedback({ ...formFeedback, ownershipFB: "is-valid" });
+      }
+    }
+
     // Check hours
     if (e.target.name === "hours") {
-      if (e.target.value === "" || isNaN(e.target.value)) {
+      if (
+        e.target.value === "" ||
+        isNaN(e.target.value) ||
+        e.target.value < 0
+      ) {
         setFormFeedback({ ...formFeedback, hoursFB: "is-invalid" });
       } else {
         setFormFeedback({ ...formFeedback, hoursFB: "is-valid" });
@@ -98,12 +201,15 @@ export const AddGame = () => {
     }
   };
 
+  // Check validation before the user submits
   const onSubmit = async (e) => {
     e.preventDefault();
     let isError = false;
     let validation = {
       nameFB: nameFB,
       systemFB: systemFB,
+      statusFB: statusFB,
+      ownershipFB: ownershipFB,
       hoursFB: hoursFB,
       ratingFB: ratingFB,
     };
@@ -116,13 +222,29 @@ export const AddGame = () => {
       validation.systemFB = "is-invalid";
       isError = true;
     }
-    if (hoursFB !== "is-valid") {
-      validation.hoursFB = "is-invalid";
+    if (statusFB !== "is-valid") {
+      validation.statusFB = "is-invalid";
       isError = true;
     }
-    if (ratingFB !== "is-valid") {
-      validation.ratingFB = "is-invalid";
-      isError = true;
+
+    // Check feedback of items depending on option selected in status
+    if (!ownershipDisable) {
+      if (ownershipFB !== "is-valid") {
+        validation.ownershipFB = "is-invalid";
+        isError = true;
+      }
+    }
+    if (!hoursDisable) {
+      if (hoursFB !== "is-valid") {
+        validation.hoursFB = "is-invalid";
+        isError = true;
+      }
+    }
+    if (!ratingDisable) {
+      if (ratingFB !== "is-valid") {
+        validation.ratingFB = "is-invalid";
+        isError = true;
+      }
     }
 
     if (isError) {
@@ -130,6 +252,8 @@ export const AddGame = () => {
         ...formFeedback,
         nameFB: validation.nameFB,
         systemFB: validation.systemFB,
+        statusFB: validation.statusFB,
+        ownershipFB: validation.ownershipFB,
         hoursFB: validation.hoursFB,
         ratingFB: validation.ratingFB,
       });
@@ -157,7 +281,7 @@ export const AddGame = () => {
                       value={name}
                       onChange={(e) => onChange(e)}
                     />
-                    <div class="invalid-feedback">Name is required.</div>
+                    <div className="invalid-feedback">Name is required.</div>
                   </div>
                 </div>
                 <div className="col-md-6 mb-4">
@@ -180,38 +304,58 @@ export const AddGame = () => {
                     value={system}
                     onChange={(e) => onChange(e)}
                   />
-                  <div class="invalid-feedback">System is required.</div>
+                  <div className="invalid-feedback">System is required.</div>
                 </div>
                 <div className="col-md-6 mb-4">
                   Status:{" "}
-                  <select className="form-control">{statusOptions}</select>
+                  <select
+                    className={`form-control ${statusFB}`}
+                    name="status"
+                    value={status}
+                    onChange={(e) => onChange(e)}
+                  >
+                    {statusOptions}{" "}
+                  </select>
                   <div className="invalid-feedback">Status is required.</div>
                 </div>
               </div>
               <div className="row">
                 <div className="col-md-4 mb-4">
                   Ownership:{" "}
-                  <select className="form-control">{ownershipOptions}</select>
+                  <select
+                    className={`form-control ${ownershipFB}`}
+                    name="ownership"
+                    value={ownership}
+                    onChange={(e) => onChange(e)}
+                    disabled={ownershipDisable}
+                  >
+                    {ownershipOptions}
+                  </select>
+                  <div className="invalid-feedback">Ownership is required.</div>
                 </div>
                 <div className="col-md-4 mb-4">
                   Hours Played:{" "}
                   <input
                     className={`form-control ${hoursFB}`}
+                    disabled={hoursDisable}
                     name="hours"
                     value={hours}
                     onChange={(e) => onChange(e)}
                   />
-                  <div class="invalid-feedback">Input must be a number.</div>
+                  <div className="invalid-feedback">
+                    Input must be a positive number.
+                  </div>
                 </div>
                 <div className="col-md-4 mb-4">
                   Rating:{" "}
                   <input
                     className={`form-control ${ratingFB}`}
+                    disabled={ratingDisable}
                     name="rating"
                     value={rating}
                     onChange={(e) => onChange(e)}
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
                     Rating must be from 0 - 10.
                   </div>
                 </div>

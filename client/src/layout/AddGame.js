@@ -72,7 +72,6 @@ export const AddGame = () => {
     <option key="7">Other</option>,
   ];
 
-  // Check validation while user is inputing
   const onChange = (e) => {
     // Check Name Validation
     if (e.target.name === "name") {

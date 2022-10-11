@@ -12,10 +12,18 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+      compilation: {
+        type: String,
+        required: true,
+      },
       system: {
         type: String,
       },
       status: {
+        type: String,
+        required: true,
+      },
+      ownership: {
         type: String,
         required: true,
       },
@@ -31,7 +39,7 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         default: null,
       },
-      comment: {
+      comments: {
         type: String,
         default: null,
       },

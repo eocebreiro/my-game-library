@@ -3,7 +3,7 @@ const router = express.Router();
 
 const auth = require("../middleware/auth");
 
-const { check } = require("express-validator");
+const { check, body } = require("express-validator");
 
 const profileController = require("../controllers/profileController");
 
@@ -29,76 +29,65 @@ router.post(
   [
     auth,
     [
-      check("name", "Name is required").not().isEmpty(),
-      check("system", "System is required").not().isEmpty(),
-      check("status", "Status is required").not().isEmpty(),
-      check("ownership", "Error with the value of status and ownership").custom(
-        (value, { req }) => {
-          if (
-            req.body.status === "Unplayed" ||
+      body("name").exists().withMessage("Name is required"),
+      body("compilation").optional(),
+      body("system").exists().withMessage("System is required"),
+      body("status")
+        .exists()
+        .withMessage("Status is required")
+        .isIn(["Unfinished", "Beaten", "Completed", "Backlog", "Wishlist"])
+        .withMessage("Status does contain invalid value"),
+      body("ownership")
+        .if((value, { req }) => {
+          return (
+            req.body.status === "Unfinished" ||
             req.body.status === "Beaten" ||
             req.body.status === "Completed" ||
             req.body.status === "Backlog"
-          ) {
-            if (value !== null) {
-              return true;
-            } else return false;
-          } else {
-            if (value === null) {
-              return true;
-            }
-          }
-        }
-      ),
-      check("hours", "Error with the value of status and hours").custom(
-        (value, { req }) => {
-          if (
-            req.body.status === "Unplayed" ||
+          );
+        })
+        .not()
+        .isEmpty()
+        .withMessage("Ownership is required"),
+      body("hours")
+        .if((value, { req }) => {
+          return (
+            req.body.status === "Unfinished" ||
             req.body.status === "Beaten" ||
             req.body.status === "Completed"
-          ) {
-            if (value !== null) {
-              return true;
-            } else return false;
-          } else {
-            if (value === null) {
-              return true;
-            }
-          }
-        }
-      ),
-      check("rating", "Error with the value of status and rating").custom(
-        (value, { req }) => {
-          if (
-            req.body.status === "Unplayed" ||
+          );
+        })
+        .not()
+        .isEmpty()
+        .withMessage("Hours is required")
+        .isFloat({ min: 0 })
+        .withMessage("Hours must be a postive number"),
+      body("rating")
+        .if((value, { req }) => {
+          return (
+            req.body.status === "Unfinished" ||
             req.body.status === "Beaten" ||
             req.body.status === "Completed"
-          ) {
-            if (value !== null) {
-              return true;
-            } else return false;
-          } else {
-            if (value === null) {
-              return true;
-            }
-          }
-        }
-      ),
-      check("review", "Error with the value of status and review").custom(
-        (value, { req }) => {
-          if (
-            req.body.status === "Unplayed" ||
-            req.body.status === "Beaten" ||
-            req.body.status === "Completed"
-          ) {
-            return true;
-          } else {
-            if (value === null) {
-              return true;
-            } else return false;
-          }
-        }
-      ),
+          );
+        })
+        .not()
+        .isEmpty()
+        .withMessage("Rating is required")
+        .isFloat({ min: 0, max: 10 })
+        .withMessage("Rating must be a number between 0 - 10"),
+      body("review")
+        .if((value, { req }) => {
+          return (
+            req.body.status !== "Unfinished" ||
+            req.body.status !== "Beaten" ||
+            req.body.status !== "Completed"
+          );
+        })
+        .isEmpty()
+        .withMessage(
+          "There should be no review if you haven't played the game"
+        ),
+      body("comments").optional(),
     ],
   ],
   profileController.addGame

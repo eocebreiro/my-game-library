@@ -48,10 +48,29 @@ exports.addGame = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { name, system, status, hours, rating, review, comment } = req.body;
+  const {
+    name,
+    compilation,
+    system,
+    status,
+    ownership,
+    hours,
+    rating,
+    review,
+    comments,
+  } = req.body;
 
-  const newGame = { name, system, status, hours, rating, review, comment };
-
+  const newGame = {
+    name,
+    compilation,
+    system,
+    status,
+    ownership,
+    hours,
+    rating,
+    review,
+    comments,
+  };
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
       "user",

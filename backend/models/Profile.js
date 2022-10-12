@@ -14,10 +14,11 @@ const ProfileSchema = new mongoose.Schema({
       },
       compilation: {
         type: String,
-        required: true,
+        default: null,
       },
       system: {
         type: String,
+        required: true,
       },
       status: {
         type: String,
@@ -25,7 +26,7 @@ const ProfileSchema = new mongoose.Schema({
       },
       ownership: {
         type: String,
-        required: true,
+        default: null,
       },
       hours: {
         type: Number,

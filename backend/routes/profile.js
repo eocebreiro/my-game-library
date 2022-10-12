@@ -30,7 +30,75 @@ router.post(
     auth,
     [
       check("name", "Name is required").not().isEmpty(),
+      check("system", "System is required").not().isEmpty(),
       check("status", "Status is required").not().isEmpty(),
+      check("ownership", "Error with the value of status and ownership").custom(
+        (value, { req }) => {
+          if (
+            req.body.status === "Unplayed" ||
+            req.body.status === "Beaten" ||
+            req.body.status === "Completed" ||
+            req.body.status === "Backlog"
+          ) {
+            if (value !== null) {
+              return true;
+            } else return false;
+          } else {
+            if (value === null) {
+              return true;
+            }
+          }
+        }
+      ),
+      check("hours", "Error with the value of status and hours").custom(
+        (value, { req }) => {
+          if (
+            req.body.status === "Unplayed" ||
+            req.body.status === "Beaten" ||
+            req.body.status === "Completed"
+          ) {
+            if (value !== null) {
+              return true;
+            } else return false;
+          } else {
+            if (value === null) {
+              return true;
+            }
+          }
+        }
+      ),
+      check("rating", "Error with the value of status and rating").custom(
+        (value, { req }) => {
+          if (
+            req.body.status === "Unplayed" ||
+            req.body.status === "Beaten" ||
+            req.body.status === "Completed"
+          ) {
+            if (value !== null) {
+              return true;
+            } else return false;
+          } else {
+            if (value === null) {
+              return true;
+            }
+          }
+        }
+      ),
+      check("review", "Error with the value of status and review").custom(
+        (value, { req }) => {
+          if (
+            req.body.status === "Unplayed" ||
+            req.body.status === "Beaten" ||
+            req.body.status === "Completed"
+          ) {
+            return true;
+          } else {
+            if (value === null) {
+              return true;
+            } else return false;
+          }
+        }
+      ),
     ],
   ],
   profileController.addGame

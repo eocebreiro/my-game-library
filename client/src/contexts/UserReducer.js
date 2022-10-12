@@ -25,7 +25,13 @@ export const UserReducer = (state, action) => {
     case "LOGOUT":
     case "ERROR":
       localStorage.removeItem("token");
-      return { ...state, token: null, isAuthenticated: false, loading: false };
+      return {
+        ...state,
+        component: "login",
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+      };
     default:
       return state;
   }

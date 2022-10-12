@@ -69,3 +69,25 @@ export const loginUser = async (dispatch, email, password) => {
 export const logoutUser = async (dispatch) => {
   dispatch({ type: "LOGOUT" });
 };
+
+// Add a game
+export const addGame = async (dispatch, object) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify(object);
+
+  try {
+    const res = await axios.post(
+      REACT_APP_BASE_URL + "/api/profile/game",
+      body,
+      config
+    );
+    dispatch({ type: "USER_LOADED", payload: res.data });
+  } catch (err) {
+    dispatch({ type: "ERROR" });
+  }
+};

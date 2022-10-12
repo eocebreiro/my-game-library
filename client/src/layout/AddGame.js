@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 
+// State
+import { useUser } from "../contexts/UserContext";
+
+// Actions
+import { addGame } from "../contexts/UserActions";
+
 export const AddGame = () => {
+  const { dispatch } = useUser();
+
   const [name, setName] = useState({
     field: "",
     feedback: "",
@@ -330,6 +338,7 @@ export const AddGame = () => {
 
       // Send Successful result
       console.log(results);
+      await addGame(dispatch, results);
     }
   };
 

@@ -13,6 +13,13 @@ export const UserReducer = (state, action) => {
         user: payload,
       };
 
+    case "GET_PROFILE":
+      return {
+        ...state,
+        loading: false,
+        profile: payload,
+      };
+
     case "SUCCESS":
       localStorage.setItem("token", payload.token);
       return {

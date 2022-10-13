@@ -16,6 +16,16 @@ export const loadUser = async (dispatch) => {
   }
 };
 
+// Get Profile
+export const getProfile = async (dispatch) => {
+  try {
+    const res = await axios.get(REACT_APP_BASE_URL + "/api/profile/me");
+    dispatch({ type: "GET_PROFILE", payload: res.data });
+  } catch (err) {
+    dispatch({ type: "ERROR" });
+  }
+};
+
 // Toggle between the register component and login component in the landing page
 export const toggleComponent = (dispatch, component) => {
   dispatch({ type: "SET_COMPONENT", payload: { component } });

@@ -8,6 +8,7 @@ const initialState = {
   isAuthenticated: null,
   loading: true,
   user: null,
+  profile: null,
 };
 
 export const UserProvider = ({ children }) => {

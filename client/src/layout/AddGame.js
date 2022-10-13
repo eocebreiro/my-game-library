@@ -5,6 +5,7 @@ import { useUser } from "../contexts/UserContext";
 
 // Actions
 import { addGame } from "../contexts/UserActions";
+import { Link, Navigate } from "react-router-dom";
 
 export const AddGame = () => {
   const { dispatch } = useUser();
@@ -345,7 +346,7 @@ export const AddGame = () => {
   return (
     <div className="container">
       <div className="row">
-        <div className="card">
+        <div className="card mb-4 mt-4">
           <div className="card-header">
             <h3>Game Information</h3>
           </div>
@@ -446,34 +447,44 @@ export const AddGame = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-md-12 mb-4">
-                Review:{" "}
-                <textarea
-                  className={`form-control ${
-                    review.disable ? "" : review.feedback
-                  }`}
-                  disabled={review.disable}
-                  rows="5"
-                  name="review"
-                  value={review.disable ? "" : review.field}
-                  onChange={(e) => onChange(e)}
-                />
+              <div className="row">
+                <div className="col-md-12 mb-4">
+                  Review:{" "}
+                  <textarea
+                    className={`form-control ${
+                      review.disable ? "" : review.feedback
+                    }`}
+                    disabled={review.disable}
+                    rows="5"
+                    name="review"
+                    value={review.disable ? "" : review.field}
+                    onChange={(e) => onChange(e)}
+                  />
+                </div>
               </div>
-              <div className="col-md-12 mb-4">
-                Comments:{" "}
-                <textarea
-                  className={`form-control ${comments.feedback}`}
-                  rows="5"
-                  name="comments"
-                  value={comments.field}
-                  onChange={(e) => onChange(e)}
-                />
+              <div className="row">
+                <div className="col-md-12 mb-4">
+                  Comments:{" "}
+                  <textarea
+                    className={`form-control ${comments.feedback}`}
+                    rows="5"
+                    name="comments"
+                    value={comments.field}
+                    onChange={(e) => onChange(e)}
+                  />
+                </div>
               </div>
-
-              <div className="d-grid gap-2 mt-3">
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
+              <div className="row">
+                <div className=" d-grid col-md-6  gap-2 mt-3">
+                  <button type="submit" className="btn btn-primary">
+                    Submit
+                  </button>
+                </div>
+                <div className="d-grid col-md-6 gap-2 mt-3">
+                  <Link type="btn" to="/dashboard" className="btn btn-danger">
+                    Cancel
+                  </Link>
+                </div>
               </div>
             </form>
           </div>

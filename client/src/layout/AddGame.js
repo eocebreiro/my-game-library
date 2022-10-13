@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // State
 import { useUser } from "../contexts/UserContext";
@@ -341,157 +341,155 @@ export const AddGame = () => {
       console.log(results);
       await addGame(dispatch, results);
     }
+  };
 
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="card mb-4 mt-4">
-            <div className="card-header">
-              <h3>Game Information</h3>
-            </div>
-            <div className="card-body">
-              <form className="px-md-2" onSubmit={(e) => onSubmit(e)}>
-                <div className="row">
-                  <div className="col-md-6 mb-4">
-                    <div className="form-outline">
-                      Name:{" "}
-                      <input
-                        className={`form-control ${name.feedback}`}
-                        name="name"
-                        value={name.field}
-                        onChange={(e) => onChange(e)}
-                      />
-                      <div className="invalid-feedback">Name is required.</div>
-                    </div>
-                  </div>
-                  <div className="col-md-6 mb-4">
-                    Compilation:{" "}
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="card mb-4 mt-4">
+          <div className="card-header">
+            <h3>Game Information</h3>
+          </div>
+          <div className="card-body">
+            <form className="px-md-2" onSubmit={(e) => onSubmit(e)}>
+              <div className="row">
+                <div className="col-md-6 mb-4">
+                  <div className="form-outline">
+                    Name:{" "}
                     <input
-                      className={`form-control ${compilation.feedback}`}
-                      name="compilation"
-                      value={compilation.field}
+                      className={`form-control ${name.feedback}`}
+                      name="name"
+                      value={name.field}
                       onChange={(e) => onChange(e)}
                     />
+                    <div className="invalid-feedback">Name is required.</div>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-md-6 mb-4">
-                    {" "}
-                    System:{" "}
-                    <input
-                      className={`form-control ${system.feedback}`}
-                      name="system"
-                      value={system.field}
-                      onChange={(e) => onChange(e)}
-                    />
-                    <div className="invalid-feedback">System is required.</div>
-                  </div>
-                  <div className="col-md-6 mb-4">
-                    Status:{" "}
-                    <select
-                      className={`form-control ${status.feedback}`}
-                      name="status"
-                      value={status.field}
-                      onChange={(e) => onChange(e)}
-                    >
-                      {statusOptions}{" "}
-                    </select>
-                    <div className="invalid-feedback">Status is required.</div>
+                <div className="col-md-6 mb-4">
+                  Compilation:{" "}
+                  <input
+                    className={`form-control ${compilation.feedback}`}
+                    name="compilation"
+                    value={compilation.field}
+                    onChange={(e) => onChange(e)}
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-6 mb-4">
+                  {" "}
+                  System:{" "}
+                  <input
+                    className={`form-control ${system.feedback}`}
+                    name="system"
+                    value={system.field}
+                    onChange={(e) => onChange(e)}
+                  />
+                  <div className="invalid-feedback">System is required.</div>
+                </div>
+                <div className="col-md-6 mb-4">
+                  Status:{" "}
+                  <select
+                    className={`form-control ${status.feedback}`}
+                    name="status"
+                    value={status.field}
+                    onChange={(e) => onChange(e)}
+                  >
+                    {statusOptions}{" "}
+                  </select>
+                  <div className="invalid-feedback">Status is required.</div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-4 mb-4">
+                  Ownership:{" "}
+                  <select
+                    className={`form-control ${
+                      ownership.disable ? "" : ownership.feedback
+                    }`}
+                    name="ownership"
+                    value={ownership.disable ? "" : ownership.field}
+                    onChange={(e) => onChange(e)}
+                    disabled={ownership.disable}
+                  >
+                    {ownershipOptions}
+                  </select>
+                  <div className="invalid-feedback">Ownership is required.</div>
+                </div>
+                <div className="col-md-4 mb-4">
+                  Hours Played:{" "}
+                  <input
+                    className={`form-control ${
+                      hours.disable ? "" : hours.feedback
+                    }`}
+                    disabled={hours.disable}
+                    name="hours"
+                    value={hours.disable ? "" : hours.field}
+                    onChange={(e) => onChange(e)}
+                  />
+                  <div className="invalid-feedback">
+                    Input must be a positive number.
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-md-4 mb-4">
-                    Ownership:{" "}
-                    <select
-                      className={`form-control ${
-                        ownership.disable ? "" : ownership.feedback
-                      }`}
-                      name="ownership"
-                      value={ownership.disable ? "" : ownership.field}
-                      onChange={(e) => onChange(e)}
-                      disabled={ownership.disable}
-                    >
-                      {ownershipOptions}
-                    </select>
-                    <div className="invalid-feedback">
-                      Ownership is required.
-                    </div>
-                  </div>
-                  <div className="col-md-4 mb-4">
-                    Hours Played:{" "}
-                    <input
-                      className={`form-control ${
-                        hours.disable ? "" : hours.feedback
-                      }`}
-                      disabled={hours.disable}
-                      name="hours"
-                      value={hours.disable ? "" : hours.field}
-                      onChange={(e) => onChange(e)}
-                    />
-                    <div className="invalid-feedback">
-                      Input must be a positive number.
-                    </div>
-                  </div>
-                  <div className="col-md-4 mb-4">
-                    Rating:{" "}
-                    <input
-                      className={`form-control ${
-                        rating.disable ? "" : rating.feedback
-                      }`}
-                      disabled={rating.disable}
-                      name="rating"
-                      value={rating.disable ? "" : rating.field}
-                      onChange={(e) => onChange(e)}
-                    />
-                    <div className="invalid-feedback">
-                      Rating must be from 0 - 10.
-                    </div>
+                <div className="col-md-4 mb-4">
+                  Rating:{" "}
+                  <input
+                    className={`form-control ${
+                      rating.disable ? "" : rating.feedback
+                    }`}
+                    disabled={rating.disable}
+                    name="rating"
+                    value={rating.disable ? "" : rating.field}
+                    onChange={(e) => onChange(e)}
+                  />
+                  <div className="invalid-feedback">
+                    Rating must be from 0 - 10.
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-md-12 mb-4">
-                    Review:{" "}
-                    <textarea
-                      className={`form-control ${
-                        review.disable ? "" : review.feedback
-                      }`}
-                      disabled={review.disable}
-                      rows="5"
-                      name="review"
-                      value={review.disable ? "" : review.field}
-                      onChange={(e) => onChange(e)}
-                    />
-                  </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12 mb-4">
+                  Review:{" "}
+                  <textarea
+                    className={`form-control ${
+                      review.disable ? "" : review.feedback
+                    }`}
+                    disabled={review.disable}
+                    rows="5"
+                    name="review"
+                    value={review.disable ? "" : review.field}
+                    onChange={(e) => onChange(e)}
+                  />
                 </div>
-                <div className="row">
-                  <div className="col-md-12 mb-4">
-                    Comments:{" "}
-                    <textarea
-                      className={`form-control ${comments.feedback}`}
-                      rows="5"
-                      name="comments"
-                      value={comments.field}
-                      onChange={(e) => onChange(e)}
-                    />
-                  </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12 mb-4">
+                  Comments:{" "}
+                  <textarea
+                    className={`form-control ${comments.feedback}`}
+                    rows="5"
+                    name="comments"
+                    value={comments.field}
+                    onChange={(e) => onChange(e)}
+                  />
                 </div>
-                <div className="row">
-                  <div className=" d-grid col-md-6  gap-2 mt-3">
-                    <button type="submit" className="btn btn-primary">
-                      Submit
-                    </button>
-                  </div>
-                  <div className="d-grid col-md-6 gap-2 mt-3">
-                    <Link type="btn" to="/dashboard" className="btn btn-danger">
-                      Cancel
-                    </Link>
-                  </div>
+              </div>
+              <div className="row">
+                <div className=" d-grid col-md-6  gap-2 mt-3">
+                  <button type="submit" className="btn btn-primary">
+                    Submit
+                  </button>
                 </div>
-              </form>
-            </div>
+                <div className="d-grid col-md-6 gap-2 mt-3">
+                  <Link type="btn" to="/dashboard" className="btn btn-danger">
+                    Cancel
+                  </Link>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
 };

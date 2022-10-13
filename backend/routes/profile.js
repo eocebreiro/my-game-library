@@ -10,7 +10,7 @@ const profileController = require("../controllers/profileController");
 // @route   GET /profile/
 // @desc    Get current user profile
 // @access  Private
-router.get("/", auth, profileController.getProfile);
+router.get("/me", auth, profileController.getProfile);
 
 // @route   PUT /profile
 // @desc    Update a user
@@ -94,7 +94,7 @@ router.post(
 );
 
 // @route   GET /profile/game/:game_id
-// @desc    Add game to profile
+// @desc    Get a game from the user library
 // @access  Private
 router.get("/game/:game_id", auth, profileController.getGame);
 

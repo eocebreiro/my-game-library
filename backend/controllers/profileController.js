@@ -4,7 +4,7 @@ const User = require("../models/User");
 
 exports.getProfile = async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id }).populate(
+    const profile = await Profile.findOne({ profile: req.user.id }).populate(
       "user",
       { name: 1 }
     );

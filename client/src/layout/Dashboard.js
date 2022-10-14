@@ -14,33 +14,57 @@ import { Filters } from "../components/Filters";
 import { DataChart } from "../components/DataChart";
 
 export const Dashboard = () => {
-  const { dispatch } = useUser();
+  const { state, dispatch } = useUser();
+  let libraryContent = [];
+  let backlogContent = [];
+  let wishlistContent = [];
 
   useEffect(() => {
     getProfile(dispatch);
   }, []);
 
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col-12">
-          <div className="row mb-4">
-            <DataChart />
-          </div>
-          <div className="row mb-4">
-            <Filters />
-          </div>
-          <div className="row mb-4">
-            <GameLibrary />
-          </div>
-          <div className="row mb-4">
-            <Backlog />
-          </div>
-          <div className="row mb-4">
-            <Wishlist />
+  if (state.profile) {
+    // Get games for each category
+    state.profile.gameLibrary.map((item) => {
+      if (
+        item.status === "Unfinished" ||
+        item.status === "Completed" ||
+        item.status === "Beaten"
+      ) {
+        libraryContent.push(item);
+      }
+      if (item.status === "Wishlist") {
+        wishlistContent.push(item);
+      }
+      if (item.status === "Backlog") {
+        backlogContent.push(item);
+      }
+    });
+
+    console.log(libraryContent);
+
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <div className="row mb-4">
+              <DataChart />
+            </div>
+            <div className="row mb-4">
+              <Filters />
+            </div>
+            <div className="row mb-4">
+              <GameLibrary content={libraryContent} />
+            </div>
+            <div className="row mb-4">
+              <Backlog content={backlogContent} />
+            </div>
+            <div className="row mb-4">
+              <Wishlist content={wishlistContent} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };

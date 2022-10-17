@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // State
 import { useUser } from "../contexts/UserContext";
@@ -8,6 +8,7 @@ import { useUser } from "../contexts/UserContext";
 import { addGame } from "../contexts/UserActions";
 
 export const AddGame = () => {
+  const naviate = useNavigate();
   const { dispatch } = useUser();
 
   const [name, setName] = useState({
@@ -338,8 +339,8 @@ export const AddGame = () => {
       }
 
       // Send Successful result
-      console.log(results);
       await addGame(dispatch, results);
+      naviate("/dashboard");
     }
   };
 

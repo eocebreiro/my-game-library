@@ -10,7 +10,7 @@ import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 export const DataChart = () => {
   return (
-    <div className="card">
+    <div>
       <div>Unfinished</div>
       <div>Beaten</div>
       <div>Completed</div>

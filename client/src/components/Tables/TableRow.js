@@ -30,7 +30,7 @@ export const TableRow = ({ headers, content }) => {
               className="text-decoration-none"
               to={"/game/review/" + linkUrl}
             >
-              see more
+              view
             </Link>
           </td>
         );
@@ -43,7 +43,7 @@ export const TableRow = ({ headers, content }) => {
               className="text-decoration-none"
               to={"/game/comments/" + linkUrl}
             >
-              see more
+              view
             </Link>
           </td>
         );

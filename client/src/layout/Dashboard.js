@@ -61,6 +61,7 @@ export const Dashboard = () => {
     state.profile.gameLibrary.map((item) => {
       if (
         item.status === "Unfinished" ||
+        item.status === "Ongoing" ||
         item.status === "Completed" ||
         item.status === "Beaten"
       ) {

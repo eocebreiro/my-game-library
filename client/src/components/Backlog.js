@@ -36,7 +36,7 @@ export const Backlog = () => {
     });
 
     // Set the library Headers
-    const headers = ["Name", "Compilation", "System", "Ownership", "Comments"];
+    const headers = ["Name", "System", "Ownership", "Comments"];
 
     const handleFilterToggle = async (e) => {
       setShowFilter(!showFilter);

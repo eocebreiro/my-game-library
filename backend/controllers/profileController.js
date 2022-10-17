@@ -48,21 +48,11 @@ exports.addGame = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const {
-    name,
-    compilation,
-    system,
-    status,
-    ownership,
-    hours,
-    rating,
-    review,
-    comments,
-  } = req.body;
+  const { name, system, status, ownership, hours, rating, review, comments } =
+    req.body;
 
   const newGame = {
     name,
-    compilation,
     system,
     status,
     ownership,

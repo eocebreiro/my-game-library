@@ -37,7 +37,7 @@ export const Wishlist = () => {
     });
 
     // Set the library Headers
-    const headers = ["Name", "Compilation", "System", "Comments"];
+    const headers = ["Name", "System", "Comments"];
 
     const handleFilterToggle = async (e) => {
       setShowFilter(!showFilter);

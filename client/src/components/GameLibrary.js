@@ -28,7 +28,7 @@ export const GameLibrary = () => {
     // Filter Categories
     const filters = {
       name: "library",
-      status: ["All", "Unfinished", "Beaten", "Completed"],
+      status: ["All", "Unfinished", "Ongoing", "Beaten", "Completed"],
       sortBy: ["Name", "Date Added", "System", "Ownership", "Hours", "Rating"],
     };
 
@@ -36,6 +36,7 @@ export const GameLibrary = () => {
     const content = state.profile.gameLibrary.filter((item) => {
       return (
         item.status === "Unfinished" ||
+        item.status === "Ongoing" ||
         item.status === "Completed" ||
         item.status === "Beaten"
       );
@@ -44,7 +45,6 @@ export const GameLibrary = () => {
     // Set the library Headers
     const headers = [
       "Name",
-      "Compilation",
       "System",
       "Status",
       "Ownership",

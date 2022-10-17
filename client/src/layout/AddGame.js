@@ -17,10 +17,6 @@ export const AddGame = () => {
     error: true,
   });
 
-  const [compilation, setCompilation] = useState({
-    field: "", // This is optional
-  });
-
   const [system, setSystem] = useState({
     field: "",
     feedback: "",
@@ -66,10 +62,11 @@ export const AddGame = () => {
   const statusOptions = [
     <option key="1">Select an option</option>,
     <option key="2">Unfinished</option>,
-    <option key="3">Beaten</option>,
-    <option key="4">Completed</option>,
-    <option key="5">Backlog</option>,
-    <option key="6">Wishlist</option>,
+    <option key="3">Ongoing</option>,
+    <option key="4">Beaten</option>,
+    <option key="5">Completed</option>,
+    <option key="6">Backlog</option>,
+    <option key="7">Wishlist</option>,
   ];
 
   const ownershipOptions = [
@@ -98,23 +95,6 @@ export const AddGame = () => {
           field: e.target.value,
           feedback: "is-valid",
           error: false,
-        });
-      }
-    }
-
-    // Check Compilation Validation
-    if (e.target.name === "compilation") {
-      if (e.target.value === "") {
-        setCompilation({
-          ...compilation,
-          field: e.target.value,
-          feedback: "",
-        });
-      } else {
-        setCompilation({
-          ...compilation,
-          field: e.target.value,
-          feedback: "is-valid",
         });
       }
     }
@@ -304,7 +284,6 @@ export const AddGame = () => {
       // if no errors, then build object to send
       let results = {
         name: name.field,
-        compilation: null,
         system: system.field,
         status: status.field,
         ownership: null,
@@ -313,10 +292,6 @@ export const AddGame = () => {
         review: null,
         comments: null,
       };
-
-      if (compilation.field !== "") {
-        results["compilation"] = compilation.field;
-      }
 
       if (!ownership.disable && !ownership.error) {
         results["ownership"] = ownership.field;
@@ -354,7 +329,7 @@ export const AddGame = () => {
           <div className="card-body">
             <form className="px-md-2" onSubmit={(e) => onSubmit(e)}>
               <div className="row">
-                <div className="col-md-6 mb-4">
+                <div className="col-12 mb-4">
                   <div className="form-outline">
                     Name:{" "}
                     <input
@@ -365,15 +340,6 @@ export const AddGame = () => {
                     />
                     <div className="invalid-feedback">Name is required.</div>
                   </div>
-                </div>
-                <div className="col-md-6 mb-4">
-                  Compilation:{" "}
-                  <input
-                    className={`form-control ${compilation.feedback}`}
-                    name="compilation"
-                    value={compilation.field}
-                    onChange={(e) => onChange(e)}
-                  />
                 </div>
               </div>
               <div className="row">

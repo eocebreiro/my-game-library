@@ -89,6 +89,7 @@ export const addGame = async (dispatch, object) => {
   };
 
   const body = JSON.stringify(object);
+  console.log("1HERE");
 
   try {
     const res = await axios.post(
@@ -96,8 +97,12 @@ export const addGame = async (dispatch, object) => {
       body,
       config
     );
+    console.log("2HERE");
     dispatch({ type: "USER_LOADED", payload: res.data });
+    console.log("3HERE");
   } catch (err) {
+    console.log("uhoh");
+
     dispatch({ type: "ERROR" });
   }
 };

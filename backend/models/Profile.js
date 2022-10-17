@@ -12,10 +12,6 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-      compilation: {
-        type: String,
-        default: null,
-      },
       system: {
         type: String,
         required: true,

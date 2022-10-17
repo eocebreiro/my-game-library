@@ -30,17 +30,24 @@ router.post(
     auth,
     [
       body("name").exists().withMessage("Name is required"),
-      body("compilation").optional(),
       body("system").exists().withMessage("System is required"),
       body("status")
         .exists()
         .withMessage("Status is required")
-        .isIn(["Unfinished", "Beaten", "Completed", "Backlog", "Wishlist"])
+        .isIn([
+          "Unfinished",
+          "Ongoing",
+          "Beaten",
+          "Completed",
+          "Backlog",
+          "Wishlist",
+        ])
         .withMessage("Status does contain invalid value"),
       body("ownership")
         .if((value, { req }) => {
           return (
             req.body.status === "Unfinished" ||
+            req.body.status === "Ongoing" ||
             req.body.status === "Beaten" ||
             req.body.status === "Completed" ||
             req.body.status === "Backlog"
@@ -53,6 +60,7 @@ router.post(
         .if((value, { req }) => {
           return (
             req.body.status === "Unfinished" ||
+            req.body.status === "Ongoing" ||
             req.body.status === "Beaten" ||
             req.body.status === "Completed"
           );
@@ -66,6 +74,7 @@ router.post(
         .if((value, { req }) => {
           return (
             req.body.status === "Unfinished" ||
+            req.body.status === "Ongoing" ||
             req.body.status === "Beaten" ||
             req.body.status === "Completed"
           );
@@ -78,8 +87,9 @@ router.post(
       body("review")
         .if((value, { req }) => {
           return (
-            req.body.status !== "Unfinished" ||
-            req.body.status !== "Beaten" ||
+            req.body.status !== "Unfinished" &&
+            req.body.status !== "Ongoing" &&
+            req.body.status !== "Beaten" &&
             req.body.status !== "Completed"
           );
         })

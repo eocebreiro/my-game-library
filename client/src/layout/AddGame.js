@@ -11,6 +11,10 @@ export const AddGame = () => {
   const naviate = useNavigate();
   const { dispatch } = useUser();
 
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   const [name, setName] = useState({
     field: "",
     feedback: "",
@@ -448,9 +452,13 @@ export const AddGame = () => {
                   </button>
                 </div>
                 <div className="d-grid col-md-6 gap-2 mt-3">
-                  <Link type="btn" to="/dashboard" className="btn btn-danger">
+                  <button
+                    type="btn"
+                    onClick={handleGoBack}
+                    className="btn btn-danger"
+                  >
                     Cancel
-                  </Link>
+                  </button>
                 </div>
               </div>
             </form>

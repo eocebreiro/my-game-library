@@ -1,9 +1,11 @@
-import React, { Fragment } from "react";
-import { Link, Navigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 // Font Awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
+// Components
 import { DeletePopup } from "../DeletePopup";
 
 export const TableCol = ({ headers, content }) => {
@@ -66,9 +68,13 @@ export const TableCol = ({ headers, content }) => {
         <td key={"edit"} colSpan={2}>
           <div className="d-flex justify-content-center align-items-center">
             <DeletePopup gameId={gameId} />
-            <button type="button" className="btn btn-primary me-2">
+            <Link
+              to={`/editgame/${gameId}`}
+              type="button"
+              className="btn btn-primary me-2"
+            >
               <FontAwesomeIcon icon={faPenToSquare} fixedWidth /> Edit
-            </button>
+            </Link>
             <button
               type="button"
               className="btn btn-danger ms-2"

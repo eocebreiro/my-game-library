@@ -17,6 +17,7 @@ import { Landing } from "./layout/Landing";
 import { Dashboard } from "./layout/Dashboard";
 import { Navbar } from "./layout/Navbar";
 import { AddGame } from "./layout/AddGame";
+import { EditGame } from "./layout/EditGame";
 
 function App() {
   const { dispatch } = useUser();
@@ -43,6 +44,11 @@ function App() {
             exact
             path="/addgame"
             element={<PrivateRoute component={AddGame} />}
+          />
+          <Route
+            exact
+            path="/editgame/:gameId"
+            element={<PrivateRoute component={EditGame} />}
           />
           <Route exact path="/" element={<Landing />} />
         </Routes>

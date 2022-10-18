@@ -9,7 +9,6 @@ const initialState = {
   loading: true,
   user: null,
   profile: null,
-  reload: false,
 };
 
 export const UserProvider = ({ children }) => {

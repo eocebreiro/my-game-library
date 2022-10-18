@@ -113,3 +113,25 @@ export const deleteGame = async (dispatch, gameId) => {
     dispatch({ type: "ERROR" });
   }
 };
+
+// Update a game
+export const updateGame = async (dispatch, object, gameId) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify(object);
+
+  try {
+    const res = await axios.put(
+      REACT_APP_BASE_URL + "/api/profile/game/" + gameId,
+      body,
+      config
+    );
+    dispatch({ type: "GET_PROFILE", payload: res.data });
+  } catch (err) {
+    dispatch({ type: "ERROR" });
+  }
+};

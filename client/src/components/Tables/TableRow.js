@@ -75,14 +75,19 @@ export const TableRow = ({ headers, content }) => {
       <td key={"edit"}>
         <div className="d-flex justify-content-around align-items-center">
           <DeletePopup gameId={gameId} />
-          <FontAwesomeIcon
-            icon={faPenToSquare}
-            fixedWidth
-            onClick={handleEdit}
-            size="xl"
-            type="button"
-            className="fa-icon-hover"
-          />
+          <Link
+            to={`/editgame/${gameId}`}
+            className="text-decoration-none text-dark"
+          >
+            <FontAwesomeIcon
+              icon={faPenToSquare}
+              fixedWidth
+              onClick={handleEdit}
+              size="xl"
+              type="button"
+              className="fa-icon-hover"
+            />
+          </Link>
 
           <FontAwesomeIcon
             icon={faTrashCan}

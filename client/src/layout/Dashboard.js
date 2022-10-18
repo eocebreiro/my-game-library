@@ -54,7 +54,6 @@ export const Dashboard = () => {
 
   useEffect(() => {
     getProfile(dispatch);
-    console.log(state.reload);
   }, []);
 
   if (state.profile) {

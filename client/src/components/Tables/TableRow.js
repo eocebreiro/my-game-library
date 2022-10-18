@@ -28,14 +28,13 @@ export const TableRow = ({ headers, content }) => {
 
   // Build table body
   let tableBody = [];
+  let gameId = null;
 
   for (let j = 0; j < content.length; j++) {
     let tableDataRow = [];
-    let linkUrl = null;
+    gameId = content[j]._id;
 
     for (let i = 0; i < headers.length; i++) {
-      linkUrl = content[j]._id;
-
       // Check to see if items have values, if not, replace with a dash (-)
       if (content[j][headers[i].toLowerCase()] === null) {
         tableDataRow.push(<td key={i}>-</td>);
@@ -46,7 +45,7 @@ export const TableRow = ({ headers, content }) => {
           <td key={i}>
             <Link
               className="text-decoration-none"
-              to={"/game/review/" + linkUrl}
+              to={"/game/review/" + gameId}
             >
               view
             </Link>
@@ -59,7 +58,7 @@ export const TableRow = ({ headers, content }) => {
           <td key={i}>
             <Link
               className="text-decoration-none"
-              to={"/game/comments/" + linkUrl}
+              to={"/game/comments/" + gameId}
             >
               view
             </Link>
@@ -71,9 +70,11 @@ export const TableRow = ({ headers, content }) => {
         );
       }
     }
+
     tableDataRow.push(
       <td key={"edit"}>
         <div className="d-flex justify-content-around align-items-center">
+          <DeletePopup gameId={gameId} />
           <FontAwesomeIcon
             icon={faPenToSquare}
             fixedWidth
@@ -88,7 +89,7 @@ export const TableRow = ({ headers, content }) => {
             fixedWidth
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#deleteModal"
+            data-bs-target={`#gameId${gameId}`}
             size="xl"
             className="fa-icon-hover"
           />

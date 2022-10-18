@@ -1,10 +1,12 @@
 import React from "react";
 
-export const DeletePopup = () => {
+export const DeletePopup = ({ gameId }) => {
+  const handleDelete = () => {};
+
   return (
     <div
       className="modal fade"
-      id="deleteModal"
+      id={`gameId${gameId}`}
       tabIndex="-1"
       aria-labelledby="deleteModalLabel"
       aria-hidden="true"
@@ -33,7 +35,12 @@ export const DeletePopup = () => {
             >
               Close
             </button>
-            <button type="button" className="btn btn-danger">
+            <button
+              type="button"
+              className="btn btn-danger"
+              data-bs-dismiss="modal"
+              onClick={handleDelete}
+            >
               Delete
             </button>
           </div>

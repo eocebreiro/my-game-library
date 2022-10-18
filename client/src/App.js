@@ -17,7 +17,6 @@ import { Landing } from "./layout/Landing";
 import { Dashboard } from "./layout/Dashboard";
 import { Navbar } from "./layout/Navbar";
 import { AddGame } from "./layout/AddGame";
-import { DeletePopup } from "./components/DeletePopup";
 
 function App() {
   const { dispatch } = useUser();
@@ -34,7 +33,6 @@ function App() {
     <div className="App bg-dark">
       <Router>
         <Navbar />
-        <DeletePopup />
         <Routes>
           <Route
             exact

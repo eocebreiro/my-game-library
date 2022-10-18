@@ -96,7 +96,7 @@ export const addGame = async (dispatch, object) => {
       body,
       config
     );
-    dispatch({ type: "USER_LOADED", payload: res.data });
+    dispatch({ type: "GET_PROFILE", payload: res.data });
   } catch (err) {
     dispatch({ type: "ERROR" });
   }
@@ -108,7 +108,7 @@ export const deleteGame = async (dispatch, gameId) => {
     const res = await axios.delete(
       REACT_APP_BASE_URL + "/api/profile/game/" + gameId
     );
-    dispatch({ type: "USER_LOADED", payload: res.data });
+    dispatch({ type: "GET_PROFILE", payload: res.data });
   } catch (err) {
     dispatch({ type: "ERROR" });
   }

@@ -5,12 +5,14 @@ import { useUser } from "../contexts/UserContext";
 
 // Actions
 import { deleteGame } from "../contexts/UserActions";
+import { getProfile } from "../contexts/UserActions";
 
 export const DeletePopup = ({ gameId }) => {
   const { dispatch } = useUser();
 
   const handleDelete = () => {
     deleteGame(dispatch, gameId);
+    getProfile(dispatch);
   };
 
   return (

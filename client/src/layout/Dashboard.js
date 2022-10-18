@@ -54,9 +54,8 @@ export const Dashboard = () => {
 
   useEffect(() => {
     getProfile(dispatch);
+    console.log(state.reload);
   }, []);
-
-  useEffect(() => {}, [state]);
 
   if (state.profile) {
     // Get games for each category

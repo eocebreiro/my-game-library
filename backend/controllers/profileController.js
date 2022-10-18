@@ -106,9 +106,19 @@ exports.updateGame = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { name, system, status, hours, rating, review, comment } = req.body;
+  const { name, system, ownership, status, hours, rating, review, comments } =
+    req.body;
 
-  const newGame = { name, system, status, hours, rating, review, comment };
+  const newGame = {
+    name,
+    system,
+    ownership,
+    status,
+    hours,
+    rating,
+    review,
+    comments,
+  };
 
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(

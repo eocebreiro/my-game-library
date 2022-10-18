@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Font Awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,8 +12,6 @@ export const TableRow = ({ headers, content }) => {
   // Edit and Delete handlers
 
   const handleEdit = () => {};
-
-  const handleDelete = () => {};
 
   // Build Headers
   let tableHeaders = [];

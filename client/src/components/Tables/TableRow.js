@@ -1,12 +1,30 @@
 import React from "react";
 import { Link, Navigate } from "react-router-dom";
 
+// Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
+// Components
+import { DeletePopup } from "../DeletePopup";
+
 export const TableRow = ({ headers, content }) => {
+  // Edit and Delete handlers
+
+  const handleEdit = () => {};
+
+  const handleDelete = () => {};
+
   // Build Headers
   let tableHeaders = [];
   for (let i = 0; i < headers.length; i++) {
     tableHeaders.push(<th key={headers[i]}>{headers[i]}</th>);
   }
+  tableHeaders.push(
+    <th rowSpan={2} key={"edit"}>
+      Edit/Delete
+    </th>
+  );
 
   // Build table body
   let tableBody = [];
@@ -53,15 +71,41 @@ export const TableRow = ({ headers, content }) => {
         );
       }
     }
+    tableDataRow.push(
+      <td key={"edit"}>
+        <div className="d-flex justify-content-around align-items-center">
+          <FontAwesomeIcon
+            icon={faPenToSquare}
+            fixedWidth
+            onClick={handleEdit}
+            size="xl"
+            type="button"
+            className="fa-icon-hover"
+          />
+
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            fixedWidth
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteModal"
+            size="xl"
+            className="fa-icon-hover"
+          />
+        </div>
+      </td>
+    );
     tableBody.push(<tr key={j}>{tableDataRow}</tr>);
   }
 
   return (
-    <table className="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>{tableHeaders}</tr>
-      </thead>
-      <tbody>{tableBody}</tbody>
-    </table>
+    <div>
+      <table className="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>{tableHeaders}</tr>
+        </thead>
+        <tbody>{tableBody}</tbody>
+      </table>
+    </div>
   );
 };

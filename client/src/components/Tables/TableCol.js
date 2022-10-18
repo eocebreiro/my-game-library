@@ -1,6 +1,10 @@
 import React, { Fragment } from "react";
 import { Link, Navigate } from "react-router-dom";
 
+// Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 export const TableCol = ({ headers, content }) => {
   let tables = [];
 
@@ -53,9 +57,28 @@ export const TableCol = ({ headers, content }) => {
           <td key={i}>{content[j][headers[i].toLowerCase()]}</td>
         );
       }
-
       tableBody.push(<tr key={i}>{tableDataRow}</tr>);
     }
+    tableBody.push(
+      <tr key={"edit"}>
+        <td key={"edit"} colSpan={2}>
+          <div className="d-flex justify-content-center align-items-center">
+            <button type="button" className="btn btn-primary me-2">
+              <FontAwesomeIcon icon={faPenToSquare} fixedWidth /> Edit
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger ms-2"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteModal"
+            >
+              <FontAwesomeIcon icon={faTrashCan} fixedWidth /> Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    );
+
     tables.push(
       <table key={j} className="table table-bordered table-hover">
         <tbody>{tableBody}</tbody>

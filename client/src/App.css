@@ -1,6 +1,10 @@
 .App {
 }
 
+.fa-icon-hover:hover {
+  color: blue;
+}
+
 .flex-basis {
   flex: 0 0 1.5em;
 }

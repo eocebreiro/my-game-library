@@ -89,7 +89,6 @@ export const addGame = async (dispatch, object) => {
   };
 
   const body = JSON.stringify(object);
-  console.log("1HERE");
 
   try {
     const res = await axios.post(
@@ -97,12 +96,20 @@ export const addGame = async (dispatch, object) => {
       body,
       config
     );
-    console.log("2HERE");
     dispatch({ type: "USER_LOADED", payload: res.data });
-    console.log("3HERE");
   } catch (err) {
-    console.log("uhoh");
+    dispatch({ type: "ERROR" });
+  }
+};
 
+// Delete a game
+export const deleteGame = async (dispatch, gameId) => {
+  try {
+    const res = await axios.delete(
+      REACT_APP_BASE_URL + "/api/profile/game/" + gameId
+    );
+    dispatch({ type: "USER_LOADED", payload: res.data });
+  } catch (err) {
     dispatch({ type: "ERROR" });
   }
 };

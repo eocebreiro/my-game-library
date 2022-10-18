@@ -1,7 +1,17 @@
 import React from "react";
 
+// State
+import { useUser } from "../contexts/UserContext";
+
+// Actions
+import { deleteGame } from "../contexts/UserActions";
+
 export const DeletePopup = ({ gameId }) => {
-  const handleDelete = () => {};
+  const { dispatch } = useUser();
+
+  const handleDelete = () => {
+    deleteGame(dispatch, gameId);
+  };
 
   return (
     <div

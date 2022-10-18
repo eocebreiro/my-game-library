@@ -56,6 +56,8 @@ export const Dashboard = () => {
     getProfile(dispatch);
   }, []);
 
+  useEffect(() => {}, [state]);
+
   if (state.profile) {
     // Get games for each category
     state.profile.gameLibrary.map((item) => {

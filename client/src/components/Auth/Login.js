@@ -7,14 +7,15 @@ import { useUser } from "../../contexts/UserContext";
 import { toggleComponent, loginUser } from "../../contexts/UserActions";
 
 export const Login = () => {
-  const { dispatch } = useUser();
+  const { state, dispatch } = useUser();
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    invalidAuth: false,
   });
 
-  const { email, password } = formData;
+  const { email, password, invalidAuth } = formData;
 
   const changeComponent = () => {
     toggleComponent(dispatch, "register");
@@ -27,13 +28,8 @@ export const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (email === "") {
-      console.log("Email is required");
-    } else if (password === "") {
-      console.log("Password is required");
-    } else {
-      await loginUser(dispatch, email, password);
-    }
+    await loginUser(dispatch, email, password);
+    setFormData({ ...formData, invalidAuth: !state.isAuthenticated && true });
   };
 
   return (
@@ -50,6 +46,14 @@ export const Login = () => {
               Sign Up
             </span>
           </div>
+          {invalidAuth && (
+            <div
+              className="alert alert-danger mt-3 text-center fw-bold"
+              role="alert"
+            >
+              Invalid Credentials
+            </div>
+          )}
           <div className="form-group mt-3">
             <label>Email address</label>
             <input

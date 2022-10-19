@@ -40,6 +40,10 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         default: null,
       },
+      date: {
+        type: Date,
+        defualt: Date.now,
+      },
     },
   ],
 

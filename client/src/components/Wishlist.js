@@ -26,18 +26,49 @@ export const Wishlist = () => {
 
     // Filter Categories
     const filters = {
-      name: "library",
+      name: "wishlist",
       status: ["All", "Unfinished", "Beaten", "Completed"],
-      sortBy: ["Name", "Date Added", "System", "Ownership", "Hours", "Rating"],
+      sortBy: ["Name", "Date Added", "System"],
     };
 
     // Get the games from the library from the context
-    const content = state.profile.gameLibrary.filter((item) => {
+    let content = state.profile.gameLibrary.filter((item) => {
       return item.status === "Wishlist";
     });
 
     // Set the library Headers
     const headers = ["Name", "System", "Comments"];
+
+    // Sort the games
+    if (activeSortBy === "Name") {
+      content.sort((a, b) => {
+        let nameA = a.name.toLowerCase();
+        let nameB = b.name.toLowerCase();
+        if (isDesc) {
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        } else {
+          if (nameA > nameB) return -1;
+          if (nameA < nameB) return 1;
+          return 0;
+        }
+      });
+    } else if (activeSortBy === "System") {
+      content.sort((a, b) => {
+        let systemA = a.system.toLowerCase();
+        let systemB = b.system.toLowerCase();
+        if (isDesc) {
+          if (systemA < systemB) return -1;
+          if (systemA > systemB) return 1;
+          return 0;
+        } else {
+          if (systemA > systemB) return -1;
+          if (systemA < systemB) return 1;
+          return 0;
+        }
+      });
+    }
 
     const handleFilterToggle = async (e) => {
       setShowFilter(!showFilter);
@@ -51,10 +82,10 @@ export const Wishlist = () => {
       if (e.target.value === "col") {
         setActiveFilters({ ...activeFilters, isRow: false });
       }
-      if (e.target.id === "statusActive") {
+      if (e.target.id === "activeStatus") {
         setActiveFilters({ ...activeFilters, [e.target.id]: e.target.value });
       }
-      if (e.target.id === "sortByActive") {
+      if (e.target.id === "activeSortBy") {
         setActiveFilters({ ...activeFilters, [e.target.id]: e.target.value });
       }
       if (e.target.id === "isDesc") {

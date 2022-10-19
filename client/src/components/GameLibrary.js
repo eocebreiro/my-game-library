@@ -33,7 +33,7 @@ export const GameLibrary = () => {
     };
 
     // Get the games from the library from the context
-    const content = state.profile.gameLibrary.filter((item) => {
+    let content = state.profile.gameLibrary.filter((item) => {
       return (
         item.status === "Unfinished" ||
         item.status === "Ongoing" ||
@@ -54,6 +54,74 @@ export const GameLibrary = () => {
       "Comments",
     ];
 
+    // Filter the games
+    if (activeStatus !== "All") {
+      content = content.filter((item) => {
+        return item.status === activeStatus;
+      });
+    }
+
+    // Sort the games
+    if (activeSortBy === "Name") {
+      content.sort((a, b) => {
+        let nameA = a.name.toLowerCase();
+        let nameB = b.name.toLowerCase();
+        if (isDesc) {
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        } else {
+          if (nameA > nameB) return -1;
+          if (nameA < nameB) return 1;
+          return 0;
+        }
+      });
+    } else if (activeSortBy === "System") {
+      content.sort((a, b) => {
+        let systemA = a.system.toLowerCase();
+        let systemB = b.system.toLowerCase();
+        if (isDesc) {
+          if (systemA < systemB) return -1;
+          if (systemA > systemB) return 1;
+          return 0;
+        } else {
+          if (systemA > systemB) return -1;
+          if (systemA < systemB) return 1;
+          return 0;
+        }
+      });
+    } else if (activeSortBy === "Ownership") {
+      content.sort((a, b) => {
+        let ownershipA = a.ownership.toLowerCase();
+        let ownershipB = b.ownership.toLowerCase();
+        if (isDesc) {
+          if (ownershipA < ownershipB) return -1;
+          if (ownershipA > ownershipB) return 1;
+          return 0;
+        } else {
+          if (ownershipA > ownershipB) return -1;
+          if (ownershipA < ownershipB) return 1;
+          return 0;
+        }
+      });
+    } else if (activeSortBy === "Hours") {
+      content.sort((a, b) => {
+        if (isDesc) {
+          return b.hours - a.hours;
+        } else {
+          return a.hours - b.hours;
+        }
+      });
+    } else if (activeSortBy === "Rating") {
+      content.sort((a, b) => {
+        if (isDesc) {
+          return b.rating - a.rating;
+        } else {
+          return a.rating - b.rating;
+        }
+      });
+    }
+
     const handleFilterToggle = async (e) => {
       setShowFilter(!showFilter);
     };
@@ -66,10 +134,10 @@ export const GameLibrary = () => {
       if (e.target.value === "col") {
         setActiveFilters({ ...activeFilters, isRow: false });
       }
-      if (e.target.id === "statusActive") {
+      if (e.target.id === "activeStatus") {
         setActiveFilters({ ...activeFilters, [e.target.id]: e.target.value });
       }
-      if (e.target.id === "sortByActive") {
+      if (e.target.id === "activeSortBy") {
         setActiveFilters({ ...activeFilters, [e.target.id]: e.target.value });
       }
       if (e.target.id === "isDesc") {

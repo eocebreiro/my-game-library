@@ -31,12 +31,57 @@ export const Backlog = () => {
     };
 
     // Get the games from the library from the context
-    const content = state.profile.gameLibrary.filter((item) => {
+    let content = state.profile.gameLibrary.filter((item) => {
       return item.status === "Backlog";
     });
 
     // Set the library Headers
     const headers = ["Name", "System", "Ownership", "Comments"];
+
+    // Sort the games
+    if (activeSortBy === "Name") {
+      content.sort((a, b) => {
+        let nameA = a.name.toLowerCase();
+        let nameB = b.name.toLowerCase();
+        if (isDesc) {
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        } else {
+          if (nameA > nameB) return -1;
+          if (nameA < nameB) return 1;
+          return 0;
+        }
+      });
+    } else if (activeSortBy === "System") {
+      content.sort((a, b) => {
+        let systemA = a.system.toLowerCase();
+        let systemB = b.system.toLowerCase();
+        if (isDesc) {
+          if (systemA < systemB) return -1;
+          if (systemA > systemB) return 1;
+          return 0;
+        } else {
+          if (systemA > systemB) return -1;
+          if (systemA < systemB) return 1;
+          return 0;
+        }
+      });
+    } else if (activeSortBy === "Ownership") {
+      content.sort((a, b) => {
+        let ownershipA = a.ownership.toLowerCase();
+        let ownershipB = b.ownership.toLowerCase();
+        if (isDesc) {
+          if (ownershipA < ownershipB) return -1;
+          if (ownershipA > ownershipB) return 1;
+          return 0;
+        } else {
+          if (ownershipA > ownershipB) return -1;
+          if (ownershipA < ownershipB) return 1;
+          return 0;
+        }
+      });
+    }
 
     const handleFilterToggle = async (e) => {
       setShowFilter(!showFilter);
@@ -50,10 +95,10 @@ export const Backlog = () => {
       if (e.target.value === "col") {
         setActiveFilters({ ...activeFilters, isRow: false });
       }
-      if (e.target.id === "statusActive") {
+      if (e.target.id === "activeStatus") {
         setActiveFilters({ ...activeFilters, [e.target.id]: e.target.value });
       }
-      if (e.target.id === "sortByActive") {
+      if (e.target.id === "activeSortBy") {
         setActiveFilters({ ...activeFilters, [e.target.id]: e.target.value });
       }
       if (e.target.id === "isDesc") {

@@ -42,12 +42,12 @@ const ProfileSchema = new mongoose.Schema({
       },
       date: {
         type: Date,
-        defualt: Date.now,
+        default: Date.now,
       },
     },
   ],
 
-  date: { type: Date, defualt: Date.now },
+  date: { type: Date, default: Date.now },
 });
 
 module.exports = Profile = mongoose.model("profile", ProfileSchema);

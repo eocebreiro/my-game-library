@@ -54,6 +54,16 @@ export const Wishlist = () => {
           return 0;
         }
       });
+    } else if (activeSortBy === "Date Added") {
+      content.sort((a, b) => {
+        let dateA = new Date(a.date);
+        let dateB = new Date(b.date);
+        if (isDesc) {
+          return dateB - dateA;
+        } else {
+          return dateA - dateB;
+        }
+      });
     } else if (activeSortBy === "System") {
       content.sort((a, b) => {
         let systemA = a.system.toLowerCase();

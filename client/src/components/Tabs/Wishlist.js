@@ -17,7 +17,7 @@ export const Wishlist = () => {
     activeStatus: null,
     activeSortBy: "Date Added",
     isDesc: true,
-    isRow: true,
+    isRow: window.innerWidth < 768 ? false : true,
   });
 
   if (state.profile) {

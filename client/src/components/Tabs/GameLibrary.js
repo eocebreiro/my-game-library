@@ -18,8 +18,9 @@ export const GameLibrary = () => {
     activeStatus: "All",
     activeSortBy: "Date Added",
     isDesc: true,
-    isRow: true,
+    isRow: window.innerWidth < 1024 ? false : true,
   });
+  console.log(window.innerWidth);
 
   if (state.profile) {
     // Deconstruct active filters

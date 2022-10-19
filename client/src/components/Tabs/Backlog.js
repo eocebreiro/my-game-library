@@ -17,7 +17,7 @@ export const Backlog = () => {
     activeStatus: null,
     activeSortBy: "Date Added",
     isDesc: true,
-    isRow: true,
+    isRow: window.innerWidth < 1024 ? false : true,
   });
 
   if (state.profile) {

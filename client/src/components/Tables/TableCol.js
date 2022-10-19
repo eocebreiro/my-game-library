@@ -7,14 +7,21 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 // Components
 import { DeletePopup } from "../DeletePopup";
+import { ViewPopup } from "../ViewPopup";
 
 export const TableCol = ({ headers, content }) => {
   let tables = [];
   let gameId = null;
+  let name = null;
+  let review = null;
+  let comments = null;
 
   //Build Headers and Data columuns
   for (let j = 0; j < content.length; j++) {
     gameId = content[j]._id;
+    name = content[j].name;
+    review = content[j].review;
+    comments = content[j].comments;
     let tableBody = [];
 
     for (let i = 0; i < headers.length; i++) {
@@ -37,9 +44,10 @@ export const TableCol = ({ headers, content }) => {
           <td key={i}>
             <Link
               className="text-decoration-none"
-              to={"/game/review/" + gameId}
+              data-bs-toggle="modal"
+              data-bs-target={`#Review${gameId}`}
             >
-              view
+              View
             </Link>
           </td>
         );
@@ -50,9 +58,10 @@ export const TableCol = ({ headers, content }) => {
           <td key={i}>
             <Link
               className="text-decoration-none"
-              to={"/game/comments/" + gameId}
+              data-bs-toggle="modal"
+              data-bs-target={`#Comments${gameId}`}
             >
-              view
+              View
             </Link>
           </td>
         );
@@ -68,6 +77,19 @@ export const TableCol = ({ headers, content }) => {
         <td key={"edit"} colSpan={2}>
           <div className="d-flex justify-content-center align-items-center">
             <DeletePopup gameId={gameId} />
+            <ViewPopup
+              name={name}
+              content={review}
+              gameId={gameId}
+              type="Review"
+            />
+            <ViewPopup
+              name={name}
+              content={comments}
+              gameId={gameId}
+              type="Comments"
+            />
+
             <Link
               to={`/editgame/${gameId}`}
               type="button"

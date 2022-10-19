@@ -7,6 +7,7 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 // Components
 import { DeletePopup } from "../DeletePopup";
+import { ViewPopup } from "../ViewPopup";
 
 export const TableRow = ({ headers, content }) => {
   // Edit and Delete handlers
@@ -27,10 +28,16 @@ export const TableRow = ({ headers, content }) => {
   // Build table body
   let tableBody = [];
   let gameId = null;
+  let name = null;
+  let review = null;
+  let comments = null;
 
   for (let j = 0; j < content.length; j++) {
     let tableDataRow = [];
     gameId = content[j]._id;
+    name = content[j].name;
+    review = content[j].review;
+    comments = content[j].comments;
 
     for (let i = 0; i < headers.length; i++) {
       // Check to see if items have values, if not, replace with a dash (-)
@@ -43,9 +50,10 @@ export const TableRow = ({ headers, content }) => {
           <td key={i}>
             <Link
               className="text-decoration-none"
-              to={"/game/review/" + gameId}
+              data-bs-toggle="modal"
+              data-bs-target={`#Review${gameId}`}
             >
-              view
+              View
             </Link>
           </td>
         );
@@ -56,9 +64,10 @@ export const TableRow = ({ headers, content }) => {
           <td key={i}>
             <Link
               className="text-decoration-none"
-              to={"/game/comments/" + gameId}
+              data-bs-toggle="modal"
+              data-bs-target={`#Comments${gameId}`}
             >
-              view
+              View
             </Link>
           </td>
         );
@@ -73,6 +82,18 @@ export const TableRow = ({ headers, content }) => {
       <td key={"edit"}>
         <div className="d-flex justify-content-around align-items-center">
           <DeletePopup gameId={gameId} />
+          <ViewPopup
+            name={name}
+            content={review}
+            gameId={gameId}
+            type="Review"
+          />
+          <ViewPopup
+            name={name}
+            content={comments}
+            gameId={gameId}
+            type="Comments"
+          />
           <Link
             to={`/editgame/${gameId}`}
             className="text-decoration-none text-dark"

@@ -1,6 +1,11 @@
 .App {
 }
 
+.modal-dialog,
+.modal-content {
+  max-height: 80% !important;
+}
+
 .fa-icon-hover:hover {
   color: blue;
 }

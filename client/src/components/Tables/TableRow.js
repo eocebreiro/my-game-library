@@ -21,7 +21,7 @@ export const TableRow = ({ headers, content }) => {
   }
   tableHeaders.push(
     <th rowSpan={2} key={"edit"}>
-      Edit/Delete
+      Actions
     </th>
   );
 

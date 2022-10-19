@@ -1,11 +1,11 @@
 import React from "react";
 
 // State
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext";
 
 // Actions
-import { deleteGame } from "../contexts/UserActions";
-import { getProfile } from "../contexts/UserActions";
+import { deleteGame } from "../../contexts/UserActions";
+import { getProfile } from "../../contexts/UserActions";
 
 export const DeletePopup = ({ gameId }) => {
   const { dispatch } = useUser();

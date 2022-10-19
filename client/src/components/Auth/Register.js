@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 
 // State
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext";
 
 // Actions
-import { toggleComponent, loginUser } from "../contexts/UserActions";
+import { toggleComponent, registerUser } from "../../contexts/UserActions";
 
-export const Login = () => {
+export const Register = () => {
   const { dispatch } = useUser();
-
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
+    password2: "",
   });
 
-  const { email, password } = formData;
+  const { name, email, password, password2 } = formData;
 
   const changeComponent = () => {
-    toggleComponent(dispatch, "register");
+    toggleComponent(dispatch, "login");
   };
 
   const onChange = (e) => {
@@ -26,13 +27,14 @@ export const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    if (email === "") {
+    if (name === "") {
+      console.log("Name is required");
+    } else if (email === "") {
       console.log("Email is required");
-    } else if (password === "") {
-      console.log("Password is required");
+    } else if (password !== password2) {
+      console.log("Passwords do not match");
     } else {
-      await loginUser(dispatch, email, password);
+      await registerUser(dispatch, name, email, password);
     }
   };
 
@@ -40,15 +42,26 @@ export const Login = () => {
     <div className="Auth-form-container">
       <form className="Auth-form" onSubmit={(e) => onSubmit(e)}>
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign In</h3>
+          <h3 className="Auth-form-title">Sign Up</h3>
           <div className="text-center">
-            Not registered yet?{" "}
+            Already registered?{" "}
             <span
               className="link-primary cursor-pointer"
               onClick={changeComponent}
             >
-              Sign Up
+              Sign In
             </span>
+          </div>
+          <div className="form-group mt-3">
+            <label>Full Name</label>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => onChange(e)}
+              className="form-control mt-1"
+              placeholder="e.g Jane Doe"
+            />
           </div>
           <div className="form-group mt-3">
             <label>Email address</label>
@@ -58,7 +71,7 @@ export const Login = () => {
               value={email}
               onChange={(e) => onChange(e)}
               className="form-control mt-1"
-              placeholder="Enter email"
+              placeholder="Email Address"
             />
           </div>
           <div className="form-group mt-3">
@@ -69,7 +82,18 @@ export const Login = () => {
               value={password}
               onChange={(e) => onChange(e)}
               className="form-control mt-1"
-              placeholder="Enter password"
+              placeholder="Password"
+            />
+          </div>
+          <div className="form-group mt-3">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              name="password2"
+              value={password2}
+              onChange={(e) => onChange(e)}
+              className="form-control mt-1"
+              placeholder="Password"
             />
           </div>
           <div className="d-grid gap-2 mt-3">

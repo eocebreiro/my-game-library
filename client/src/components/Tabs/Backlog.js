@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 // State
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext";
 
 // Components
-import { TableRow } from "./Tables/TableRow";
-import { TableCol } from "./Tables/TableCol";
+import { TableRow } from "../Tables/TableRow";
+import { TableCol } from "../Tables/TableCol";
 import { CardTitle } from "./CardTitle";
 import { Filters } from "./Filters";
 

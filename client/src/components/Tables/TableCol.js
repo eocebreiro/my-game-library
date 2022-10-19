@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 // Components
-import { DeletePopup } from "../DeletePopup";
-import { ViewPopup } from "../ViewPopup";
+import { DeletePopup } from "../Modals/DeletePopup";
+import { ViewPopup } from "../Modals/ViewPopup";
 
 export const TableCol = ({ headers, content }) => {
   let tables = [];

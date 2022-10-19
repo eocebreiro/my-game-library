@@ -7,9 +7,9 @@ import { useUser } from "../contexts/UserContext";
 import { getProfile } from "../contexts/UserActions";
 
 // Components
-import { GameLibrary } from "../components/GameLibrary";
-import { Backlog } from "../components/Backlog";
-import { Wishlist } from "../components/Wishlist";
+import { GameLibrary } from "../components/Tabs/GameLibrary";
+import { Backlog } from "../components/Tabs/Backlog";
+import { Wishlist } from "../components/Tabs/Wishlist";
 
 export const Dashboard = () => {
   const [active, setActive] = useState({

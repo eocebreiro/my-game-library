@@ -12,7 +12,7 @@ import { setAuthToken } from "./utils/setAuthToken";
 import { loadUser } from "./contexts/UserActions";
 
 // Components
-import { PrivateRoute } from "./components/PrivateRoute";
+import { PrivateRoute } from "./components/Auth/PrivateRoute";
 import { Landing } from "./layout/Landing";
 import { Dashboard } from "./layout/Dashboard";
 import { Navbar } from "./layout/Navbar";

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 // State
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext";
 
 export const DataChart = () => {
   //State

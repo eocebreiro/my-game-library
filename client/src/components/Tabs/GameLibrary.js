@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 
 // State
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext";
 
 // Components
-import { TableRow } from "./Tables/TableRow";
-import { TableCol } from "./Tables/TableCol";
+import { TableRow } from "../Tables/TableRow";
+import { TableCol } from "../Tables/TableCol";
 import { CardTitle } from "./CardTitle";
 import { Filters } from "./Filters";
+import { DataChart } from "./DataChart";
 
-export const Wishlist = () => {
+export const GameLibrary = () => {
   //State
   const { state } = useUser();
   const [showFilter, setShowFilter] = useState(false);
   const [activeFilters, setActiveFilters] = useState({
-    activeStatus: null,
+    activeStatus: "All",
     activeSortBy: "Date Added",
     isDesc: true,
     isRow: true,
@@ -26,18 +27,39 @@ export const Wishlist = () => {
 
     // Filter Categories
     const filters = {
-      name: "wishlist",
-      status: ["All", "Unfinished", "Beaten", "Completed"],
-      sortBy: ["Name", "Date Added", "System"],
+      name: "library",
+      status: ["All", "Unfinished", "Ongoing", "Beaten", "Completed"],
+      sortBy: ["Name", "Date Added", "System", "Ownership", "Hours", "Rating"],
     };
 
     // Get the games from the library from the context
     let content = state.profile.gameLibrary.filter((item) => {
-      return item.status === "Wishlist";
+      return (
+        item.status === "Unfinished" ||
+        item.status === "Ongoing" ||
+        item.status === "Completed" ||
+        item.status === "Beaten"
+      );
     });
 
     // Set the library Headers
-    const headers = ["Name", "System", "Comments"];
+    const headers = [
+      "Name",
+      "System",
+      "Status",
+      "Ownership",
+      "Hours",
+      "Rating",
+      "Review",
+      "Comments",
+    ];
+
+    // Filter the games
+    if (activeStatus !== "All") {
+      content = content.filter((item) => {
+        return item.status === activeStatus;
+      });
+    }
 
     // Sort the games
     if (activeSortBy === "Name") {
@@ -78,6 +100,36 @@ export const Wishlist = () => {
           return 0;
         }
       });
+    } else if (activeSortBy === "Ownership") {
+      content.sort((a, b) => {
+        let ownershipA = a.ownership.toLowerCase();
+        let ownershipB = b.ownership.toLowerCase();
+        if (isDesc) {
+          if (ownershipA < ownershipB) return -1;
+          if (ownershipA > ownershipB) return 1;
+          return 0;
+        } else {
+          if (ownershipA > ownershipB) return -1;
+          if (ownershipA < ownershipB) return 1;
+          return 0;
+        }
+      });
+    } else if (activeSortBy === "Hours") {
+      content.sort((a, b) => {
+        if (isDesc) {
+          return b.hours - a.hours;
+        } else {
+          return a.hours - b.hours;
+        }
+      });
+    } else if (activeSortBy === "Rating") {
+      content.sort((a, b) => {
+        if (isDesc) {
+          return b.rating - a.rating;
+        } else {
+          return a.rating - b.rating;
+        }
+      });
     }
 
     const handleFilterToggle = async (e) => {
@@ -107,8 +159,9 @@ export const Wishlist = () => {
       <div className="card">
         <div className="card-header">
           <CardTitle showFilter={showFilter} callback={handleFilterToggle}>
-            <h4>Wishlist</h4>
+            <h4>My Gaming Library</h4>
           </CardTitle>
+
           {showFilter ? (
             <Filters
               filters={filters}
@@ -116,6 +169,7 @@ export const Wishlist = () => {
               callback={handleSetFilters}
             />
           ) : null}
+          <DataChart />
         </div>
         <div className="card-body">
           <div className="table-responsive">

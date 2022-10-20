@@ -21,7 +21,7 @@ export const Dashboard = () => {
   const { libraryActive, backlogActive, wishlistActive } = active;
 
   const handleActive = (e) => {
-    if (e.target.name === "library") {
+    if (e.currentTarget.name === "library") {
       setActive({
         ...active,
         libraryActive: "active",
@@ -29,7 +29,7 @@ export const Dashboard = () => {
         wishlistActive: "",
       });
     }
-    if (e.target.name === "backlog") {
+    if (e.currentTarget.name === "backlog") {
       setActive({
         ...active,
         libraryActive: "",
@@ -37,7 +37,7 @@ export const Dashboard = () => {
         wishlistActive: "",
       });
     }
-    if (e.target.name === "wishlist") {
+    if (e.currentTarget.name === "wishlist") {
       setActive({
         ...active,
         libraryActive: "",
@@ -77,52 +77,36 @@ export const Dashboard = () => {
 
     return (
       <div className="container">
-        <div>
-          <div class="form-check form-switch">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              role="switch"
-              id="themeSwitch"
-            />
-            <label class="form-check-label" for="flexSwitchCheckDefault">
-              Default switch checkbox input
-            </label>
-          </div>
-        </div>
         <div className="card">
           <div className="card-header">
             <ul className="nav nav-tabs nav-fill card-header-tabs">
               <li className="nav-item">
-                <a
+                <button
                   className={`nav-link ${libraryActive}`}
                   aria-current="page"
-                  href="#library"
                   name="library"
                   onClick={(e) => handleActive(e)}
                 >
                   <h5>Library</h5>
-                </a>
+                </button>
               </li>
               <li className="nav-item">
-                <a
+                <button
                   className={`nav-link ${backlogActive}`}
-                  href="#backlog"
                   name="backlog"
                   onClick={(e) => handleActive(e)}
                 >
                   <h5>Backlog</h5>
-                </a>
+                </button>
               </li>
               <li className="nav-item">
-                <a
+                <button
                   className={`nav-link ${wishlistActive}`}
-                  href="#wishlist"
                   name="wishlist"
                   onClick={(e) => handleActive(e)}
                 >
                   <h5>Wishlist</h5>
-                </a>
+                </button>
               </li>
             </ul>
           </div>

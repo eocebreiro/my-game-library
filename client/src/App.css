@@ -1,17 +1,6 @@
 .App {
 }
 
-.form-check-input:checked {
-  background-color: yellow;
-  border-color: yellow;
-  border: none;
-}
-.form-check-input {
-  background-color: navy;
-  border-color: navy;
-  border: none;
-}
-
 .modal-dialog,
 .modal-content {
   max-height: 80% !important;

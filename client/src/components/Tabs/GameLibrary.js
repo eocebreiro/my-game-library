@@ -20,7 +20,6 @@ export const GameLibrary = () => {
     isDesc: true,
     isRow: window.innerWidth < 1024 ? false : true,
   });
-  console.log(window.innerWidth);
 
   if (state.profile) {
     // Deconstruct active filters

@@ -1,4 +1,75 @@
 .App {
+  background: var(--backgroundColor);
+}
+
+.navbar {
+  background: var(--navBackgroundColor);
+}
+
+.link-color {
+  color: var(--navTextColor);
+}
+
+.link-color-hover:hover {
+  color: grey;
+}
+
+.container {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  min-height: 100vh;
+  background: var(--backgroundColor);
+}
+
+.card {
+  background: var(--cardBackground);
+  color: var(--textColor);
+}
+
+.card-header {
+  background: var(--cardHeaderBackground);
+}
+
+.nav-item > .nav-link.active {
+  background: var(--cardBackground);
+  color: var(--textColor);
+  border-color: var(--cardBackground);
+}
+
+label > span {
+  color: var(--textColor);
+}
+
+input[type="text"] {
+  background-color: var(--inputBackground);
+}
+
+input[type="text"]:disabled {
+  background-color: var(--inputDisableColor);
+}
+
+textarea {
+  background-color: var(--inputBackground);
+}
+
+select option {
+  background-color: var(--inputBackground);
+  color: var(--textColor);
+}
+
+.theme-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.theme-circle:hover {
+  background-color: grey;
+}
+.theme-color-hover:hover {
+  color: white;
 }
 
 .modal-dialog,
@@ -15,28 +86,15 @@
 }
 
 .font-light {
-  color: white;
+  color: var(--color);
 }
 
 textarea {
   resize: none;
 }
 
-.link-color {
-  color: white;
-}
-
-.link-color-hover:hover {
-  color: grey;
-}
-
 .cursor-pointer {
   cursor: pointer;
-}
-.container {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  min-height: 100vh;
 }
 
 .landing {

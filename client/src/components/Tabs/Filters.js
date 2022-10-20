@@ -51,7 +51,7 @@ export const Filters = ({
             onChange={(e) => callback(e)}
           />
           <label className="form-check-label" htmlFor="row-radio">
-            Row
+            <span>Row</span>
           </label>
         </div>
         <div className="form-check">
@@ -65,7 +65,7 @@ export const Filters = ({
             onChange={(e) => callback(e)}
           />
           <label className="form-check-label" htmlFor="col-radio">
-            Col
+            <span>Col</span>
           </label>
         </div>
       </div>

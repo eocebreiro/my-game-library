@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// State
+import { useTheme } from "../../contexts/ThemeContext";
+
 // Font Awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +13,8 @@ import { DeletePopup } from "../Modals/DeletePopup";
 import { ViewPopup } from "../Modals/ViewPopup";
 
 export const TableCol = ({ headers, content }) => {
+  const { themeName } = useTheme();
+
   let tables = [];
   let gameId = null;
   let name = null;
@@ -28,7 +33,7 @@ export const TableCol = ({ headers, content }) => {
       let tableDataRow = [];
 
       tableDataRow.push(
-        <th key={headers[i]} className="table-light w-25">
+        <th key={headers[i]} className=" w-25">
           {headers[i]}
         </th>
       );
@@ -111,7 +116,12 @@ export const TableCol = ({ headers, content }) => {
     );
 
     tables.push(
-      <table key={j} className="table table-bordered table-hover">
+      <table
+        key={j}
+        className={`table ${
+          themeName === "light" ? "table-light" : "table-dark"
+        } table-bordered table-hover`}
+      >
         <tbody>{tableBody}</tbody>
       </table>
     );

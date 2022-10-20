@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// State
+import { useTheme } from "../../contexts/ThemeContext";
+
 // Font Awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -10,10 +13,7 @@ import { DeletePopup } from "../Modals/DeletePopup";
 import { ViewPopup } from "../Modals/ViewPopup";
 
 export const TableRow = ({ headers, content }) => {
-  // Edit and Delete handlers
-
-  const handleEdit = () => {};
-
+  const { themeName } = useTheme();
   // Build Headers
   let tableHeaders = [];
   for (let i = 0; i < headers.length; i++) {
@@ -101,7 +101,6 @@ export const TableRow = ({ headers, content }) => {
             <FontAwesomeIcon
               icon={faPenToSquare}
               fixedWidth
-              onClick={handleEdit}
               size="xl"
               type="button"
               className="fa-icon-hover"
@@ -125,7 +124,11 @@ export const TableRow = ({ headers, content }) => {
 
   return (
     <div>
-      <table className="table table-striped table-bordered table-hover">
+      <table
+        className={`table ${
+          themeName === "light" ? "table-light" : "table-dark"
+        } table-bordered table-hover`}
+      >
         <thead>
           <tr>{tableHeaders}</tr>
         </thead>

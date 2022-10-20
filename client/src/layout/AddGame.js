@@ -327,7 +327,7 @@ export const AddGame = () => {
     <div className="container">
       <div className="row">
         <div className="card mb-4 mt-4">
-          <div className="card-header">
+          <div className="card-title pt-3">
             <h3>Game Information</h3>
           </div>
           <div className="card-body">
@@ -341,6 +341,7 @@ export const AddGame = () => {
                       name="name"
                       value={name.field}
                       onChange={(e) => onChange(e)}
+                      type="text"
                     />
                     <div className="invalid-feedback">Name is required.</div>
                   </div>
@@ -355,6 +356,7 @@ export const AddGame = () => {
                     name="system"
                     value={system.field}
                     onChange={(e) => onChange(e)}
+                    type="text"
                   />
                   <div className="invalid-feedback">System is required.</div>
                 </div>
@@ -397,6 +399,7 @@ export const AddGame = () => {
                     name="hours"
                     value={hours.disable ? "" : hours.field}
                     onChange={(e) => onChange(e)}
+                    type="text"
                   />
                   <div className="invalid-feedback">
                     Input must be a positive number.
@@ -412,6 +415,7 @@ export const AddGame = () => {
                     name="rating"
                     value={rating.disable ? "" : rating.field}
                     onChange={(e) => onChange(e)}
+                    type="text"
                   />
                   <div className="invalid-feedback">
                     Rating must be from 0 - 10.

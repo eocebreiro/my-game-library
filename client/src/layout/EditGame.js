@@ -358,7 +358,7 @@ export const EditGame = () => {
     <div className="container">
       <div className="row">
         <div className="card mb-4 mt-4">
-          <div className="card-header">
+          <div className="card-title pt-3">
             <h3>Game Information</h3>
           </div>
           <div className="card-body">

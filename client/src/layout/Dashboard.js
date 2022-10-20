@@ -83,7 +83,7 @@ export const Dashboard = () => {
               class="form-check-input"
               type="checkbox"
               role="switch"
-              id="flexSwitchCheckDefault"
+              id="themeSwitch"
             />
             <label class="form-check-label" for="flexSwitchCheckDefault">
               Default switch checkbox input

@@ -23,7 +23,7 @@ export const DataChart = () => {
     });
 
     return (
-      <Fragment>
+      <div className="mb-4">
         {unfinished.length > 0 ? (
           <Fragment>
             <div className="text-center pt-3">
@@ -156,7 +156,7 @@ export const DataChart = () => {
             </div>
           </Fragment>
         ) : null}
-      </Fragment>
+      </div>
     );
   }
 };

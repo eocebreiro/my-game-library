@@ -13,6 +13,8 @@ import {
   faHouse,
   faRightFromBracket,
   faPlus,
+  faMoon,
+  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const Navbar = () => {
@@ -21,6 +23,10 @@ export const Navbar = () => {
   const onClick = async (e) => {
     e.preventDefault();
     await logoutUser(dispatch);
+  };
+
+  const toggleTheme = async (e) => {
+    e.preventDefault();
   };
 
   let navbar = null;
@@ -50,6 +56,20 @@ export const Navbar = () => {
             >
               <FontAwesomeIcon icon={faPlus} fixedWidth />
               <span className="d-none d-md-inline"> Add a Game</span>
+            </Link>
+          </li>
+          <li className="nav-item ">
+            <Link
+              to="/"
+              className="text-decoration-none link-color link-color-hover "
+              onClick={(e) => toggleTheme(e)}
+            >
+              {state.theme === "light" ? (
+                <FontAwesomeIcon icon={faMoon} fixedWidth />
+              ) : (
+                <FontAwesomeIcon icon={faSun} fixedWidth />
+              )}
+              <span className="d-none d-md-inline"> Theme</span>{" "}
             </Link>
           </li>
           <li className="nav-item ">

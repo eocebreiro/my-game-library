@@ -31,7 +31,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App bg-dark">
+    <div className="App bg-light">
       <Router>
         <Navbar />
         <Routes>

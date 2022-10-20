@@ -9,18 +9,20 @@ import {
 
 export const CardTitle = ({ children, showFilter, callback, filters }) => {
   return (
-    <div className="col d-flex justify-content-between ">
-      <div className="flex-basis d-flex align-items-center " />
-      {children}
-      <div className="flex-basis  d-flex align-items-center">
+    <div className="col">
+      <div
+        className="button d-flex align-items-center"
+        type="button"
+        onClick={callback}
+      >
+        Filters
         {showFilter ? (
           <FontAwesomeIcon
             icon={faFilterCircleXmark}
             fixedWidth
-            onClick={callback}
-          />
+          ></FontAwesomeIcon>
         ) : (
-          <FontAwesomeIcon icon={faFilter} fixedWidth onClick={callback} />
+          <FontAwesomeIcon icon={faFilter} fixedWidth />
         )}
       </div>
     </div>

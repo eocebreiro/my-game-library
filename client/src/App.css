@@ -1,6 +1,17 @@
 .App {
 }
 
+.form-check-input:checked {
+  background-color: yellow;
+  border-color: yellow;
+  border: none;
+}
+.form-check-input {
+  background-color: navy;
+  border-color: navy;
+  border: none;
+}
+
 .modal-dialog,
 .modal-content {
   max-height: 80% !important;
@@ -34,7 +45,8 @@ textarea {
   cursor: pointer;
 }
 .container {
-  padding-top: 4rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
   min-height: 100vh;
 }
 

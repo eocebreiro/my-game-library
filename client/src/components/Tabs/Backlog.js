@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 
 // State
 import { useUser } from "../../contexts/UserContext";
@@ -117,20 +117,16 @@ export const Backlog = () => {
     };
 
     return (
-      <div className="card">
-        <div className="card-header">
-          <CardTitle showFilter={showFilter} callback={handleFilterToggle}>
-            <h4>Backlog</h4>
-          </CardTitle>
-
-          {showFilter ? (
-            <Filters
-              filters={filters}
-              activeFilters={activeFilters}
-              callback={handleSetFilters}
-            />
-          ) : null}
-        </div>
+      <Fragment>
+        {" "}
+        <CardTitle showFilter={showFilter} callback={handleFilterToggle} />
+        {showFilter ? (
+          <Filters
+            filters={filters}
+            activeFilters={activeFilters}
+            callback={handleSetFilters}
+          />
+        ) : null}
         <div className="card-body">
           <div className="table-responsive">
             {isRow ? (
@@ -140,7 +136,7 @@ export const Backlog = () => {
             )}
           </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 };

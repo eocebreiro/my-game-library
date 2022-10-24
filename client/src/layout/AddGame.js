@@ -319,7 +319,7 @@ export const AddGame = () => {
 
       // Send Successful result
       await addGame(dispatch, results);
-      naviate("/dashboard");
+      naviate("/my-game-library/dashboard");
     }
   };
 

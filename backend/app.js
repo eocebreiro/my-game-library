@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const favicon = require("serve-favicon");
 
 require("dotenv").config();
 const { MONGOURI } = process.env;
@@ -16,7 +15,6 @@ const cors = require("cors");
 //Init Middleware
 app.use(morgan("dev"));
 app.use(express.json({ extended: false }));
-app.use(favicon(__dirname + "/img/favicon.ico"));
 
 //Connect to the database
 try {

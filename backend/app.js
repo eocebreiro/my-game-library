@@ -32,6 +32,7 @@ app.use(cors());
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/favicon.ico", express.static("/img/favicon.ico"));
 app.use("/", (req, res) => res.send("Welcome to My Gaming Library"));
 
 // Error 404

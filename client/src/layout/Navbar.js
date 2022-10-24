@@ -18,6 +18,9 @@ import {
   faSun,
 } from "@fortawesome/free-solid-svg-icons";
 
+// Images
+import Logo from "../img/GameLogo.png";
+
 export const Navbar = () => {
   const { state, dispatch } = useUser();
   const { themeName, toggleTheme } = useTheme();
@@ -35,7 +38,10 @@ export const Navbar = () => {
           to="/dashboard"
           className="navbar-brand  mr-0 text-center link-color link-color-hover"
         >
-          MGL
+          <div className="d-flex align-items-center gap-2">
+            <img src={Logo} alt="Logo" width="30" />
+            <span className="d-none d-md-inline">My Game Library</span>
+          </div>
         </Link>
         <ul className="nav gap-5 align-items-center">
           <li className="nav-item">

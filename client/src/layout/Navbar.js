@@ -28,7 +28,6 @@ export const Navbar = () => {
   const onClick = async (e) => {
     e.preventDefault();
     await logoutUser(dispatch);
-    toggleTheme();
   };
 
   let navbar = null;

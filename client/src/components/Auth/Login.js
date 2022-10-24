@@ -37,7 +37,7 @@ export const Login = () => {
       <form className="Auth-form" onSubmit={(e) => onSubmit(e)}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign In</h3>
-          <div className="text-center">
+          <div className="text-center auth-sub-text">
             Not registered yet?{" "}
             <span
               className="link-primary cursor-pointer"

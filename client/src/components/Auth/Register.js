@@ -86,7 +86,7 @@ export const Register = () => {
       >
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign Up</h3>
-          <div className="text-center">
+          <div className="text-center auth-sub-text">
             Already registered?{" "}
             <span
               className="link-primary cursor-pointer"

@@ -153,7 +153,13 @@ textarea {
   padding-top: 30px;
   padding-bottom: 20px;
   border-radius: 8px;
-  background-color: white;
+  background-color: var(--cardBackground);
+}
+input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+}
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--textColor) !important;
 }
 
 .Auth-form-content {
@@ -165,12 +171,16 @@ textarea {
   text-align: center;
   margin-bottom: 1em;
   font-size: 24px;
-  color: rgb(34, 34, 34);
+  color: var(--textColor);
   font-weight: 800;
+}
+
+.auth-sub-text {
+  color: var(--textColor);
 }
 
 label {
   font-size: 14px;
   font-weight: 600;
-  color: rgb(34, 34, 34);
+  color: var(--textColor);
 }

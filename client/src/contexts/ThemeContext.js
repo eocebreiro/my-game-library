@@ -1,12 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-// State
-const initialState = {
-  isLightTheme: true,
-  light: { syntax: "#555", ui: "#ddd", bg: "#eee" },
-  dark: { syntax: "#ddd", ui: "#333", bg: "#555" },
-};
-
 const themes = {
   dark: {
     backgroundColor: "black",
@@ -35,7 +28,10 @@ const themes = {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [themeName, setThemeName] = useState("light");
+  console.log(localStorage.theme);
+  const [themeName, setThemeName] = useState(
+    localStorage.theme ? localStorage.theme : "light"
+  );
   const [theme, setTheme] = useState(themes[themeName]);
 
   useEffect(() => {
@@ -52,9 +48,11 @@ export const ThemeProvider = ({ children }) => {
     if (theme === themes.dark) {
       setTheme(themes.light);
       setThemeName("light");
+      localStorage.setItem("theme", "light");
     } else {
       setTheme(themes.dark);
       setThemeName("dark");
+      localStorage.setItem("theme", "dark");
     }
   };
 

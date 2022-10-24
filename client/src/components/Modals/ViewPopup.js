@@ -1,6 +1,10 @@
 import React from "react";
 
+// State
+import { useTheme } from "../../contexts/ThemeContext";
+
 export const ViewPopup = ({ name, content, gameId, type }) => {
+  const { themeName } = useTheme();
   return (
     <div
       className="modal fade"
@@ -17,7 +21,11 @@ export const ViewPopup = ({ name, content, gameId, type }) => {
             </h1>
             <button
               type="button"
-              className="btn-close"
+              className={`${
+                themeName === "light"
+                  ? "btn-close"
+                  : "btn-close btn-close-white"
+              }`}
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>

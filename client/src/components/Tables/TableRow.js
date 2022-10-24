@@ -103,7 +103,7 @@ export const TableRow = ({ headers, content }) => {
               fixedWidth
               size="xl"
               type="button"
-              className="fa-icon-hover"
+              className="fa-action-icon"
             />
           </Link>
 
@@ -114,7 +114,7 @@ export const TableRow = ({ headers, content }) => {
             data-bs-toggle="modal"
             data-bs-target={`#gameId${gameId}`}
             size="xl"
-            className="fa-icon-hover"
+            className="fa-action-icon"
           />
         </div>
       </td>

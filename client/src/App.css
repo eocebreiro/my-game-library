@@ -1,17 +1,20 @@
+/********* NOT SURE WHERE ***********/
+.flex-basis {
+  flex: 0 0 1.5em;
+}
+
+.font-light {
+  color: var(--color);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/********* NOT SURE WHERE ***********/
+
 .App {
   background: var(--backgroundColor);
-}
-
-.navbar {
-  background: var(--navBackgroundColor);
-}
-
-.link-color {
-  color: var(--navTextColor);
-}
-
-.link-color-hover:hover {
-  color: grey;
 }
 
 .container {
@@ -21,6 +24,41 @@
   background: var(--backgroundColor);
 }
 
+/* Navbar Styles*/
+.navbar {
+  background: var(--navBackgroundColor);
+}
+
+.link-color {
+  color: var(--navTextColor);
+}
+
+.link-color-hover:hover {
+  color: var(--hoverColor);
+}
+
+.no-focus:focus {
+  border: none;
+}
+
+.theme-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.theme-circle:hover {
+  background-color: grey;
+}
+
+.theme-color-hover:hover {
+  color: white;
+}
+
+/* Card Styles*/
 .card {
   background: var(--cardBackground);
   color: var(--textColor);
@@ -40,62 +78,58 @@ label > span {
   color: var(--textColor);
 }
 
-input[type="text"] {
-  background-color: var(--inputBackground);
+/* Table Styles*/
+
+.fa-action-icon:hover {
+  color: var(--hoverColor);
 }
 
-input[type="text"]:disabled {
-  background-color: var(--inputDisableColor);
+.fa-action-icon {
+  color: var(--tableActionColor);
 }
 
-textarea {
-  background-color: var(--inputBackground);
-}
-
-select option {
-  background-color: var(--inputBackground);
-  color: var(--textColor);
-}
-
-.theme-circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
-.theme-circle:hover {
-  background-color: grey;
-}
-.theme-color-hover:hover {
-  color: white;
-}
-
-.modal-dialog,
-.modal-content {
-  max-height: 80% !important;
-}
-
-.fa-icon-hover:hover {
-  color: blue;
-}
-
-.flex-basis {
-  flex: 0 0 1.5em;
-}
-
-.font-light {
-  color: var(--color);
-}
-
+/* Add/Edit Page Styles*/
 textarea {
   resize: none;
 }
 
-.cursor-pointer {
-  cursor: pointer;
+.form-control,
+.form-control:focus {
+  background: var(--inputBackground);
+  color: var(--textColor);
 }
+
+.form-control:disabled {
+  cursor: not-allowed;
+  color: var(--inputDisableColor);
+  background-color: var(--inputDisableColor);
+}
+
+/* Filters Styles*/
+
+.form-select {
+  background: var(--inputBackground);
+  color: var(--textColor);
+}
+
+/* Modal (popups) Styles*/
+
+.modal-dialog,
+.modal-content {
+  max-height: 80% !important;
+  color: var(--textColor);
+}
+
+.modal-content {
+  background: var(--cardBackground);
+}
+
+.btn-close {
+  color: green !important;
+  opacity: 1;
+}
+
+/* Landing Page Styles */
 
 .landing {
   background: url("./img/showcase.jpg") no-repeat center center/cover;

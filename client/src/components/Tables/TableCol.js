@@ -100,7 +100,12 @@ export const TableCol = ({ headers, content }) => {
               type="button"
               className="btn btn-primary me-2"
             >
-              <FontAwesomeIcon icon={faPenToSquare} fixedWidth /> Edit
+              <FontAwesomeIcon
+                className="action-icon"
+                icon={faPenToSquare}
+                fixedWidth
+              />{" "}
+              Edit
             </Link>
             <button
               type="button"
@@ -108,7 +113,12 @@ export const TableCol = ({ headers, content }) => {
               data-bs-toggle="modal"
               data-bs-target={`#gameId${gameId}`}
             >
-              <FontAwesomeIcon icon={faTrashCan} fixedWidth /> Delete
+              <FontAwesomeIcon
+                className="action-icon"
+                icon={faTrashCan}
+                fixedWidth
+              />{" "}
+              Delete
             </button>
           </div>
         </td>

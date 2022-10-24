@@ -69,9 +69,8 @@ export const Navbar = () => {
           </li>
           <li className="nav-item ">
             <div className="theme-circle">
-              <Link
-                to="/"
-                className="text-decoration-none link-color theme-color-hover theme-icon "
+              <button
+                className="btn no-focus text-decoration-none link-color theme-color-hover theme-icon "
                 onClick={toggleTheme}
               >
                 {themeName === "light" ? (
@@ -79,7 +78,7 @@ export const Navbar = () => {
                 ) : (
                   <FontAwesomeIcon icon={faSun} fixedWidth />
                 )}
-              </Link>
+              </button>
             </div>
           </li>
         </ul>

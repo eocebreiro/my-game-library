@@ -11,22 +11,26 @@ const themes = {
   dark: {
     backgroundColor: "black",
     textColor: "#ddd",
+    hoverColor: "grey",
     navBackgroundColor: "#1c1e21",
     navTextColor: "white",
     cardBackground: "#1c1e21",
     cardHeaderBackground: "#333333",
     inputBackground: "rgb(43, 43, 43)",
     inputDisableColor: "grey",
+    tableActionColor: "white",
   },
   light: {
     backgroundColor: "#eee",
     textColor: "black",
+    hoverColor: "grey",
     navBackgroundColor: "black",
     navTextColor: "white",
     cardBackground: "white",
     cardHeaderBackground: "#FAF9F9",
     inputBackground: "white",
     inputDisableColor: "lightgrey",
+    tableActionColor: "black",
   },
 };
 

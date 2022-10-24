@@ -32,7 +32,7 @@ app.use(cors());
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
-app.get("/", (req, res) => res.send("Welcome to My Gaming Library"));
+app.use("/", (req, res) => res.send("Welcome to My Gaming Library"));
 
 // Error 404
 app.use((req, res, next) => {

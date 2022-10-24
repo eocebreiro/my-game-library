@@ -35,7 +35,7 @@ app.use("/api/profile", profileRoutes);
 app.get("/favicon.ico", res.sendFile("/img/favicon.ico"));
 app.get("/", (req, res) => res.send("Welcome to My Gaming Library"));
 
-// Error 404
+/// Error 404
 app.use((req, res, next) => {
   const error = new Error("Not Found (404)");
   error.status = 404;

@@ -37,20 +37,20 @@ function App() {
         <Routes>
           <Route
             exact
-            path="/dashboard"
+            path="/my-gaming-library/dashboard"
             element={<PrivateRoute component={Dashboard} />}
           />
           <Route
             exact
-            path="/addgame"
+            path="/my-gaming-library/addgame"
             element={<PrivateRoute component={AddGame} />}
           />
           <Route
             exact
-            path="/editgame/:gameId"
+            path="/my-gaming-library/editgame/:gameId"
             element={<PrivateRoute component={EditGame} />}
           />
-          <Route exact path="/" element={<Landing />} />
+          <Route exact path="/my-gaming-library" element={<Landing />} />
         </Routes>
       </Router>
     </div>

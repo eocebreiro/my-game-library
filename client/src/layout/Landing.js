@@ -16,7 +16,7 @@ export const Landing = () => {
 
   if (state.isAuthenticated) {
     loadUser(dispatch);
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/my-game-library/dashboard" />;
   }
 
   return (

@@ -350,7 +350,7 @@ export const EditGame = () => {
 
       // Send Successful result
       await updateGame(dispatch, results, gameId);
-      naviate("/dashboard");
+      naviate("/my-game-library/dashboard");
     }
   };
 

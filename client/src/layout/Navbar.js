@@ -35,7 +35,7 @@ export const Navbar = () => {
     navbar = (
       <nav className="ps-5 pe-5 navbar fixed-top ">
         <Link
-          to="/dashboard"
+          to="/my-game-library/dashboard"
           className="navbar-brand  mr-0 text-center link-color link-color-hover"
         >
           <div className="d-flex align-items-center gap-2">
@@ -46,7 +46,7 @@ export const Navbar = () => {
         <ul className="nav gap-5 align-items-center">
           <li className="nav-item">
             <Link
-              to="/dashboard"
+              to="/my-game-library/dashboard"
               className="text-decoration-none link-color link-color-hover"
             >
               <FontAwesomeIcon icon={faHouse} fixedWidth />
@@ -55,7 +55,7 @@ export const Navbar = () => {
           </li>
           <li className="nav-item">
             <Link
-              to="/addgame"
+              to="/my-game-library/addgame"
               className="text-decoration-none link-color link-color-hover"
             >
               <FontAwesomeIcon icon={faPlus} fixedWidth />
@@ -65,7 +65,7 @@ export const Navbar = () => {
 
           <li className="nav-item ">
             <Link
-              to="/"
+              to="/my-game-library/"
               className="text-decoration-none link-color link-color-hover "
               onClick={(e) => onClick(e)}
             >

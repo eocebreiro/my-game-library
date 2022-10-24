@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/my-gaming-library/static/css/main.06791c54.css",
+    "main.js": "/my-gaming-library/static/js/main.5439d2cf.js",
+    "static/media/showcase.jpg": "/my-gaming-library/static/media/showcase.2f76cab9f2e44f521e50.jpg",
+    "static/media/GameLogo.png": "/my-gaming-library/static/media/GameLogo.dfa1295e3996ab8009bd.png",
+    "index.html": "/my-gaming-library/index.html",
+    "main.06791c54.css.map": "/my-gaming-library/static/css/main.06791c54.css.map",
+    "main.5439d2cf.js.map": "/my-gaming-library/static/js/main.5439d2cf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.06791c54.css",
+    "static/js/main.5439d2cf.js"
+  ]
+}

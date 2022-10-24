@@ -10,5 +10,5 @@ export const PrivateRoute = ({ component: Component }) => {
   if (state.isAuthenticated && !state.loading) {
     return <Component />;
   }
-  return <Navigate to="/" />;
+  return <Navigate to="/my-game-library/" />;
 };

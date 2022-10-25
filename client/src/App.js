@@ -28,7 +28,7 @@ function App() {
     }
 
     loadUser(dispatch);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">

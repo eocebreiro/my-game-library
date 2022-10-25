@@ -10,20 +10,18 @@ import {
 export const CardTitle = ({ children, showFilter, callback, filters }) => {
   return (
     <div className="col">
-      <div
-        className="button d-flex align-items-center"
-        type="button"
-        onClick={callback}
-      >
-        Filters
-        {showFilter ? (
-          <FontAwesomeIcon
-            icon={faFilterCircleXmark}
-            fixedWidth
-          ></FontAwesomeIcon>
-        ) : (
-          <FontAwesomeIcon icon={faFilter} fixedWidth />
-        )}
+      <div className=" d-flex align-items-center">
+        <div className="cursor-pointer" onClick={callback}>
+          Filters
+          {showFilter ? (
+            <FontAwesomeIcon
+              icon={faFilterCircleXmark}
+              fixedWidth
+            ></FontAwesomeIcon>
+          ) : (
+            <FontAwesomeIcon icon={faFilter} fixedWidth />
+          )}
+        </div>
       </div>
     </div>
   );

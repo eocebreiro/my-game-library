@@ -95,14 +95,13 @@ export const TableRow = ({ headers, content }) => {
             type="Comments"
           />
           <Link
-            to={`/editgame/${gameId}`}
+            to={`/my-game-library/editgame/${gameId}`}
             className="text-decoration-none text-dark"
           >
             <FontAwesomeIcon
               icon={faPenToSquare}
               fixedWidth
               size="xl"
-              type="button"
               className="fa-action-icon"
             />
           </Link>
@@ -110,7 +109,6 @@ export const TableRow = ({ headers, content }) => {
           <FontAwesomeIcon
             icon={faTrashCan}
             fixedWidth
-            type="button"
             data-bs-toggle="modal"
             data-bs-target={`#gameId${gameId}`}
             size="xl"

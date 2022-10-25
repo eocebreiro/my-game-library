@@ -95,17 +95,15 @@ export const TableCol = ({ headers, content }) => {
               type="Comments"
             />
 
-            <Link
-              to={`/editgame/${gameId}`}
-              type="button"
-              className="btn btn-primary me-2"
-            >
-              <FontAwesomeIcon
-                className="action-icon"
-                icon={faPenToSquare}
-                fixedWidth
-              />{" "}
-              Edit
+            <Link to={`/my-game-library/editgame/${gameId}`}>
+              <button type="button" className="btn btn-primary me-2">
+                <FontAwesomeIcon
+                  className="action-icon"
+                  icon={faPenToSquare}
+                  fixedWidth
+                />{" "}
+                Edit
+              </button>
             </Link>
             <button
               type="button"

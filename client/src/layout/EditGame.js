@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // State
 import { useUser } from "../contexts/UserContext";
@@ -357,7 +357,7 @@ export const EditGame = () => {
   return (
     <div className="container">
       <div className="row">
-        <div className="card mb-4 mt-4">
+        <div className="card mb-4">
           <div className="card-title pt-3">
             <h3>Game Information</h3>
           </div>

@@ -22,7 +22,7 @@ export const Wishlist = () => {
 
   if (state.profile) {
     // Deconstruct active filters
-    const { activeStatus, activeSortBy, isDesc, isRow } = activeFilters;
+    const { activeSortBy, isDesc, isRow } = activeFilters;
 
     // Filter Categories
     const filters = {

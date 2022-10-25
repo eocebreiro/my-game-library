@@ -38,9 +38,9 @@ export const Filters = ({
 
   return (
     <div className="pt-3">
-      <div className="d-flex gap-3 justify-content-center pb-3">
-        View:
-        <div className="form-check">
+      <div className="d-flex justify-content-center pb-3">
+        <span className="me-3">View: </span>
+        <div className="form-check me-3">
           <input
             type="radio"
             className="form-check-input"
@@ -69,10 +69,10 @@ export const Filters = ({
           </label>
         </div>
       </div>
-      <div className="d-flex gap-3 justify-content-center align-items-center pb-3">
+      <div className="d-flex justify-content-center align-items-center pb-3">
         {activeStatus ? (
           <select
-            className="form-select"
+            className="form-select me-3"
             id={"activeStatus"}
             defaultValue={activeStatus}
             onChange={(e) => callback(e)}
@@ -81,7 +81,7 @@ export const Filters = ({
           </select>
         ) : null}
         <select
-          className="form-select"
+          className="form-select me-3"
           id={"activeSortBy"}
           defaultValue={activeSortBy}
           onChange={(e) => callback(e)}

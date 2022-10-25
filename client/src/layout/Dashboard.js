@@ -54,7 +54,7 @@ export const Dashboard = () => {
 
   useEffect(() => {
     getProfile(dispatch);
-  }, []);
+  }, [dispatch]);
 
   if (state.profile) {
     // Get games for each category
@@ -73,6 +73,7 @@ export const Dashboard = () => {
       if (item.status === "Backlog") {
         backlogContent.push(item);
       }
+      return 0;
     });
 
     return (

@@ -44,7 +44,7 @@ export const Navbar = () => {
           </div>
         </Link>
         <ul className="nav align-items-center">
-          <li className="nav-item me-5">
+          <li className="nav-item me-4">
             <Link
               to="/my-game-library/dashboard"
               className="text-decoration-none link-color link-color-hover"
@@ -53,7 +53,7 @@ export const Navbar = () => {
               <span className="d-none d-md-inline"> Home</span>
             </Link>
           </li>
-          <li className="nav-item me-5">
+          <li className="nav-item me-4">
             <Link
               to="/my-game-library/addgame"
               className="text-decoration-none link-color link-color-hover"
@@ -63,7 +63,7 @@ export const Navbar = () => {
             </Link>
           </li>
 
-          <li className="nav-item me-5">
+          <li className="nav-item me-4">
             <Link
               to="/my-game-library/"
               className="text-decoration-none link-color link-color-hover "
